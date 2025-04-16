@@ -1,0 +1,9 @@
+{
+    "welcome": "Welcome!",
+    "settings": "Settings",
+    "language": "Language",
+    "volume": "Volume",
+    "inputName" :"Enter a nickname:",
+    "confirm": "Confirm",
+    "nickPlaceholder": "Your nickmame"
+}

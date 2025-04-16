@@ -1,0 +1,9 @@
+{
+    "welcome": "Добро пожаловать!",
+    "settings": "Настройки",
+    "language": "Язык",
+    "volume": "Громкость",
+    "inputName": "Введите ваше имя:",
+    "confirm": "Подтвердить",
+    "nickPlaceholder": "Ваше имя"
+}
