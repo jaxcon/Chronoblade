@@ -3,14 +3,21 @@ import {
     Card,
     Image,
     Name,
-    Stats,
-    StatRow,
     Description,
     SwipeArea,
     ChooseButton
 } from './CharacterPicker.styled';
+import { usePlayer } from '../../context/PlayerContext';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import StatsBlock from './StatsBlock';
+
 
 function CharacterCard({ character, onSwipe }) {
+    const { updateChampion } = usePlayer();
+    const navigate = useNavigate();
+    const { t: getString } = useTranslation();
+
     const touchStartX = useRef(null);
 
     const handleTouchStart = (e) => {
@@ -34,15 +41,14 @@ function CharacterCard({ character, onSwipe }) {
             onTouchEnd={handleTouchEnd}
         >
             <Card>
-                <Name>{character.name}</Name>
-                <Image src={character.image} alt={character.name} />
-                <Stats>
-                    <StatRow>🗡 Атака: {character.stats.attack}</StatRow>
-                    <StatRow>🛡 Защита: {character.stats.defense}</StatRow>
-                    <StatRow>⚡️ Скорость: {character.stats.speed}</StatRow>
-                </Stats>
-                <Description>{character.description}</Description>
-                <ChooseButton>Выбрать</ChooseButton>
+                <Name>{getString(character.id)}</Name>
+                <Image src={character.image} alt={getString(character.id)} />
+                <StatsBlock getString={getString} stats={character.stats} />
+                <Description>{getString(character.id + 'Description')}</Description>
+                <ChooseButton onClick={() => {
+                    updateChampion(character.id);
+                    navigate('/');
+                }}>{getString('select')}</ChooseButton>
             </Card>
         </SwipeArea>
     );

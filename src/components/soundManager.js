@@ -3,7 +3,7 @@ const soundMap = {
     hit: "assets//sounds/hit.mp3",
     heal: "/sounds/heal.mp3",
 };
-  
+
 export function playSoundByName(name, volume = 0.5) {
     const src = soundMap[name];
     if (!src) return;
@@ -11,4 +11,3 @@ export function playSoundByName(name, volume = 0.5) {
     audio.volume = volume;
     audio.play();
 }
-  

@@ -5,17 +5,17 @@ import en from './locales/en/translation.json';
 import ru from './locales/ru/translation.json';
 
 i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      ru: { translation: ru },
-    },
-    lng: 'ru', // язык по умолчанию
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+    .use(initReactI18next)
+    .init({
+        resources: {
+            en: { translation: en },
+            ru: { translation: ru },
+        },
+        lng: 'ru',
+        fallbackLng: 'en',
+        interpolation: {
+            escapeValue: false,
+        },
+    });
 
 export default i18n;

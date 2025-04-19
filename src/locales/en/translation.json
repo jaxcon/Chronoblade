@@ -5,5 +5,16 @@
     "volume": "Volume",
     "inputName" :"Enter a nickname:",
     "confirm": "Confirm",
-    "nickPlaceholder": "Your nickmame"
+    "nickPlaceholder": "Your nickmame",
+    "attack": "Attack: ",
+    "defense": "Defense: ",
+    "speed": "Speed: ",
+    "select": "Select",
+    "draygar": "Draygar",
+    "danitsa": "Danitsa",
+    "jormungad": "Jormungad",
+    "draygarDescription": "Мощный фронтовик с высокой защитой.",
+    "danitsaDescription": "Ловкий и быстрый, идеален для критических ударов.",
+    "jormungadDescription": "Специалист по мощным заклинаниям."
+
 }

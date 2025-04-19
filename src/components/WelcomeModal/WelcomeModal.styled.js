@@ -49,21 +49,21 @@ export const InputNickname = styled.input`
 `;
 
 export const ConfirmButton = styled.button`
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
 
-  &:hover {
-    background-color: #45a049;
-  }
+    &:hover {
+        background-color: #45a049;
+    }
 
-  &:disabled {
-    background-color: #888;
-    cursor: not-allowed;
-  }
+    &:disabled {
+        background-color: #888;
+        cursor: not-allowed;
+    }
 `;

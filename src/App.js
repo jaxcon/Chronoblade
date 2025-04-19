@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainScreen from './navigation/MainScreen';
 import BattleScreen from './navigation/BattleScreen';
 import ShopScreen from './navigation/ShopScreen';
 import { PlayerProvider } from './context/PlayerContext';
-import CharacterPicker from './components/WelcomeModal/CharacterPicker'
+import CharacterPicker from './components/CharacterPicker/CharacterPicker'
 import AppWrapper from './AppWrapper';
+import GameHub from './components/GameHub/GameHub';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
             <Router>
                 <AppWrapper>
                     <Routes>
-                        <Route path="/" element={<MainScreen />} />
+                        <Route path="/" element={<GameHub />} />
                         <Route path="/battle" element={<BattleScreen />} />
                         <Route path="/shop" element={<ShopScreen />} />
                         <Route path="/champs" element={<CharacterPicker />} />
