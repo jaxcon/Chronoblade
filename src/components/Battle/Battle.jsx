@@ -1,19 +1,13 @@
 import React from 'react';
 import {
     BattleWrapper,
-    PlayerSection,
-    PlayerImage,
-    ActionPanel,
-    ActionButton,
     TurnHistory,
     Avatar,
-    HPBarWrapper,
-    HPBar,
-    HPText
 } from './Battle.styled';
 import { useBattle } from '../../context/BattleContext'
-import EnemyRow from './EnemyRow';
-import PlayerRow from './PlayerRow';
+import EnemyRow from './EnemiesRow/EnemyRow';
+import PlayerRow from './PlayerRow/PlayerRow';
+import ControlPanel from './ControlPanel/ControlPanel';
 
 const Battle = ({ turnLog }) => {
     const { resetBattle, setPlayer, setEnemies, player, handleEnemyKill, enemies, setSelectedAction, selectedAction } = useBattle();
@@ -21,25 +15,9 @@ const Battle = ({ turnLog }) => {
     return (
         <BattleWrapper>
             <EnemyRow enemies={enemies} />
-
             <PlayerRow player={player} />
 
-            <ActionPanel>
-                <ActionButton selected={selectedAction === "attack"} onClick={() => setSelectedAction("attack")}>
-                    <img src="assets/icons/attackIcon.png" alt="attack" />
-                    Attack
-                </ActionButton>
-
-                <ActionButton selected={selectedAction === "skill"} onClick={() => setSelectedAction("skill")}>
-                    <img src="assets/icons/skillIcon.png" alt="skill" />
-                    Skill
-                </ActionButton>
-
-                <ActionButton selected={selectedAction === "item"} onClick={() => setSelectedAction("item")}>
-                    <img src="assets/icons/itemIcon.png" alt="item" />
-                    Item
-                </ActionButton>
-            </ActionPanel>
+            <ControlPanel selectedAction={selectedAction} setSelectedAction={setSelectedAction} />
 
             <TurnHistory>
                 {turnLog.map((char, index) => (

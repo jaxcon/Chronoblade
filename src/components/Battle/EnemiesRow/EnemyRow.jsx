@@ -5,7 +5,7 @@ import {
     HPBar,
     HPText,
     EnemyWrapper
-} from './Battle.styled';
+} from './enemyRow.styled';
 
 const EnemyRow = ( { enemies }) => {
     return (

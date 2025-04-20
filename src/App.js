@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BattleScreen from './navigation/BattleScreen';
-import ShopScreen from './navigation/ShopScreen';
+import Store from './components/Store/Store';
 import { PlayerProvider } from './context/PlayerContext';
 import CharacterPicker from './components/CharacterPicker/CharacterPicker'
 import AppWrapper from './AppWrapper';
@@ -15,7 +15,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<GameHub />} />
                         <Route path="/battle" element={<BattleScreen />} />
-                        <Route path="/shop" element={<ShopScreen />} />
+                        <Route path="/shop" element={<Store />} />
                         <Route path="/champs" element={<CharacterPicker />} />
                     </Routes>
                 </AppWrapper>

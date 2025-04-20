@@ -6,14 +6,17 @@
     "inputName": "Введите ваше имя:",
     "confirm": "Подтвердить",
     "nickPlaceholder": "Ваше имя",
-    "attack": "Атака ",
-    "defense": "Защита ",
-    "speed": "Скорость ",
+    "attack": "Атака: ",
+    "defense": "Защита: ",
+    "speed": "Скорость: ",
     "select": "Выбрать",
     "draygar": "Дрейгар",
     "danitsa": "Даница",
     "jormungad": "Йормунгад",
     "draygarDescription": "Мощный фронтовик с высокой защитой.",
     "danitsaDescription": "Ловкий и быстрый, идеален для критических ударов.",
-    "jormungadDescription": "Специалист по мощным заклинаниям."
+    "jormungadDescription": "Специалист по мощным заклинаниям.",
+    "attackAction": "Атака",
+    "skill": "Умение",
+    "item": "Предмет"
 }

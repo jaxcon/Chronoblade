@@ -15,6 +15,9 @@
     "jormungad": "Jormungad",
     "draygarDescription": "Мощный фронтовик с высокой защитой.",
     "danitsaDescription": "Ловкий и быстрый, идеален для критических ударов.",
-    "jormungadDescription": "Специалист по мощным заклинаниям."
+    "jormungadDescription": "Специалист по мощным заклинаниям.",
+    "attackAction": "Attack",
+    "skill": "Skill",
+    "item": "Item"
 
 }

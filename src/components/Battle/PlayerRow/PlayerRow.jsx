@@ -1,20 +1,16 @@
 import {
-    BattleWrapper,
     PlayerSection,
+    PlayerWrapper,
     PlayerImage,
-    ActionPanel,
-    ActionButton,
-    TurnHistory,
-    Avatar,
     HPBarWrapper,
     HPBar,
     HPText
-} from './Battle.styled';
+} from './playerRow.styled';
 
 const PlayerRow = ( { player }) => {
     return (
         <PlayerSection>
-            <div key={player.champClass} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <PlayerWrapper>
                 <PlayerImage
                     src={player.imageSource}
                     alt={'3213'}
@@ -24,7 +20,7 @@ const PlayerRow = ( { player }) => {
                     <HPText>{player.currentHealth}</HPText>
                 </HPBarWrapper>
 
-            </div>
+            </PlayerWrapper>
         </PlayerSection>
     )
 };

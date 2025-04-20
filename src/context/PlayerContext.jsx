@@ -7,9 +7,10 @@ export function PlayerProvider({ children }) {
     const [username, setUsername] = useState("vitalik123");
     const [volume, setVolume] = useState(0.2);
     const [kills, setKills] = useState(0);
-    const [gold, setGold] = useState(0);
+    const [gold, setGold] = useState(110);
     const [champion, setChampion] = useState('draygar');
     const [xp, setXp] = useState(0);
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         //
@@ -27,6 +28,10 @@ export function PlayerProvider({ children }) {
         setChampion(champ);
     }
 
+    const buyNewItem = (item) => {
+        setItems([...items, item]);
+    }
+
     return (
         <PlayerContext.Provider value={{
             username,
@@ -39,7 +44,9 @@ export function PlayerProvider({ children }) {
             champion,
             xp,
             setXp,
-            setGold
+            setGold,
+            items,
+            buyNewItem
         }}>
             <BattleProvider>
                 {children}

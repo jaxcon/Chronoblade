@@ -30,7 +30,7 @@ function GameHub() {
         <>
             <BackgroundImage src={imageSource} alt="Background" />
             <ButtonsWrapper>
-                <ShopButton onClick={() => playSoundByName('hit', 0.2)} />
+                <ShopButton onClick={() => navigate('shop')} />
                 <GateButton onClick={() => navigate('battle')} />
                 <TavernButton onClick={() => navigate('champs')} />
             </ButtonsWrapper>
