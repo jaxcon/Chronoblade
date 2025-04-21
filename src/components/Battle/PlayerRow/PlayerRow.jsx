@@ -5,7 +5,7 @@ import {
     HPBarWrapper,
     HPBar,
     HPText
-} from './playerRow.styled';
+} from './PlayerRow.styled';
 
 const PlayerRow = ( { player }) => {
     return (
