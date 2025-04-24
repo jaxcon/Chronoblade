@@ -1,21 +1,22 @@
-import { useNavigate } from 'react-router-dom';
 import { ShopWrapper } from "./Store.styled";
 import { usePlayer } from '../../context/PlayerContext';
 import ItemGrid from './ItemGrid/ItemGrid';
-import HeaderRow from './HeaderRow/HeaderRow';
-import WaveSeparator from './WaveSeparator/WaveSeparator';
+import HeaderRow from './HeaderRow';
+import WaveSeparator from './WaveSeparator';
 
 const Store = () => {
-    const navigate = useNavigate();
     const { buyNewItem, gold, items: buyedItems } = usePlayer();
 
     return (
         <ShopWrapper>
-            <HeaderRow onBack={() => navigate('/')} gold={gold} stats={{ attack: 15, vampirism: 7, critChance: 10, speed: 12 }} />
+            <HeaderRow
+                gold={gold}
+                buyedItems={buyedItems}
+            />
 
             <WaveSeparator />
-            
-            <ItemGrid buyedItems={buyedItems} buyNewItem={buyNewItem} />
+
+            <ItemGrid buyedItems={buyedItems} buyNewItem={buyNewItem} gold={gold} />
         </ShopWrapper>
     );
 };

@@ -1,16 +1,32 @@
-import React from 'react';
-import {
-    BattleWrapper,
-    TurnHistory,
-    Avatar,
-} from './Battle.styled';
+import React, { useEffect } from 'react';
+import { BattleWrapper } from './Battle.styled';
 import { useBattle } from '../../context/BattleContext'
 import EnemyRow from './EnemiesRow/EnemyRow';
 import PlayerRow from './PlayerRow/PlayerRow';
-import ControlPanel from './ControlPanel/ControlPanel';
+import ControlPanel from './ControlPanel';
+import TurnHistory from './TurnHistory';
 
-const Battle = ({ turnLog }) => {
-    const { resetBattle, setPlayer, setEnemies, player, handleEnemyKill, enemies, setSelectedAction, selectedAction } = useBattle();
+const Battle = () => {
+    const {
+        resetBattle,
+        setPlayer,
+        setEnemies,
+        player,
+        handleEnemyKill,
+        enemies,
+        setSelectedAction,
+        selectedAction,
+        turns,
+        setTurns
+
+    } = useBattle();
+
+    useEffect(() => {
+        if (!turns?.queue?.length) return;
+
+
+        console.log(turns.queue)
+    }, [turns])
 
     return (
         <BattleWrapper>
@@ -19,16 +35,8 @@ const Battle = ({ turnLog }) => {
 
             <ControlPanel selectedAction={selectedAction} setSelectedAction={setSelectedAction} />
 
-            <TurnHistory>
-                {turnLog.map((char, index) => (
-                    <Avatar
-                        key={index}
-                        src={char.image}
-                        alt={char.name}
-                        title={char.name}
-                    />
-                ))}
-            </TurnHistory>
+            <TurnHistory turns={turns} />
+
         </BattleWrapper>
     );
 };

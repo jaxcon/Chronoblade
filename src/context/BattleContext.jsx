@@ -7,23 +7,17 @@ const BattleContext = createContext();
 export function BattleProvider({ children }) {
     const [player, setPlayer] = useState({});
     const [enemies, setEnemies] = useState([]);
-    const [turnLog, setTurnLog] = useState([]);
     const [selectedAction, setSelectedAction] = useState("attack");
-    const [overAllGold, setOverAllGold] = useState(0);
-    const [overAllExp, setOverAllExp] = useState(0);
-    //const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-
+    const [gameResult, setGameResult] = useState({});
+    const [turns, setTurns] = useState([]);
     const { gold, setGold } = usePlayer();
-
-    const logTurn = (actor) => {
-        setTurnLog(prev => [...prev, actor]);
-    };
 
     const resetBattle = () => {
         setPlayer({});
         setEnemies([]);
-        setTurnLog([]);
+        setTurns([]);
         setSelectedAction("attack");
+        setGameResult({gold: 0, xp: 0, unitKills: 0})
     };
 
     const handleEnemyKill = (exp, lootGold) => {
@@ -36,25 +30,28 @@ export function BattleProvider({ children }) {
             setPlayer({ ...player, xp: newXp })
         }
 
-        setGold(gold + lootGold);
+        setGold(prevGold => prevGold + lootGold);
 
-        setOverAllGold(overAllGold + lootGold);
-        setOverAllExp(overAllExp + exp);
+        setGameResult(prev => ({
+            ...prev,
+            gold: prev.gold + lootGold,
+            xp: prev.xp + exp,
+            unitKills: prev.unitKills + 1
+        }));    
     }
 
     return (
         <BattleContext.Provider value={{
             player,
             enemies,
-            turnLog,
             selectedAction,
             setPlayer,
             setEnemies,
             setSelectedAction,
-            logTurn,
             resetBattle,
             handleEnemyKill,
-
+            turns,
+            setTurns
         }}>
             {children}
         </BattleContext.Provider>

@@ -18,6 +18,19 @@
     "jormungadDescription": "Специалист по мощным заклинаниям.",
     "attackAction": "Attack",
     "skill": "Skill",
-    "item": "Item"
+    "item": "Item",
+    "buy": "Buy for",
+    "bloodAmulet": "Blood Amulet",
+    "bloodAmuletStats": "+10 life",
+    "hawkHelm": "Hawk Helm",
+    "hawkHelmStats": "+1 defense",
+    "runeRing": "Rune Ring",
+    "runeRingStats": "+1 attack",
+    "windRing": "Wind Ring",
+    "windRingStats": "+5 hp regen",
+    "darkAmulet": "Amulet of Darkness",
+    "darkAmuletStats": "+5% lifesteal",
+    "fateShield": "Shield of Fate",
+    "fateShieldStats": "+5 basic stats"
 
 }

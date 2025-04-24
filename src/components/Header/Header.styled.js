@@ -8,7 +8,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2;
+    z-index: 12;
 `;
 
 export const SettingsButton = styled.button`

@@ -6,9 +6,29 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  overscroll-behavior: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body, html {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+/* @media (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: 0 0;
+    
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100vw;
+  }
+}  */

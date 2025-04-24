@@ -6,15 +6,14 @@ import {
     ShopButton,
     GateButton,
     TavernButton,
-    BackgroundImage
+    BackgroundWrapper,
+    BackgroundImage,
+    BirdsContainer
 } from './GameHub.styled';
-
-import WelcomeModal from '../WelcomeModal/WelcomeModal';
-import { playSoundByName } from '../soundManager';
+import WelcomeModal from '../WelcomeModal';
 import Header from '../Header/Header';
-
-const aspectRatio = window.innerWidth / window.innerHeight;
-const imageSource = aspectRatio < 0.5 ? "assets/locs/minimain.png" : aspectRatio < 0.75 ? "assets/locs/main.png" : aspectRatio < 1 ? 'assets/locs/main2.png' : 'assets/locs/main3.png';
+import Smoke from './Smoke';
+import Bird from './Bird';
 
 function GameHub() {
     const navigate = useNavigate();
@@ -28,7 +27,27 @@ function GameHub() {
 
     return (
         <>
-            <BackgroundImage src={imageSource} alt="Background" />
+            <BackgroundWrapper>
+                <source srcSet="assets/locs/minimain.png" media="(max-aspect-ratio: 1/2)" />
+                <source srcSet="assets/locs/main.png" media="(min-aspect-ratio: 1/2) and (max-aspect-ratio: 3/4)" />
+                <source srcSet="assets/locs/main2.png" media="(min-aspect-ratio: 3/4) and (max-aspect-ratio: 1/1)" />
+                <source srcSet="assets/locs/main3.png" media="(min-aspect-ratio: 1/1)" />
+                <BackgroundImage src="assets/locs/main.png" alt="Background" />
+            </BackgroundWrapper>
+
+            <Smoke />
+            <BirdsContainer>
+                {Array.from({ length: 3}).map((_, i) => (
+                    <Bird
+                        key={i}
+                        size={`${20 + Math.random() * 15}px`}
+                        top={`${5 + Math.random() * 80}%`}
+                        left={`${0}%`}
+                        duration={`${10 + Math.random() * 15}s`}
+                    />
+                ))}
+            </BirdsContainer>
+
             <ButtonsWrapper>
                 <ShopButton onClick={() => navigate('shop')} />
                 <GateButton onClick={() => navigate('battle')} />

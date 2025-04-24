@@ -8,12 +8,13 @@ import {
 } from './PlayerRow.styled';
 
 const PlayerRow = ( { player }) => {
+
     return (
         <PlayerSection>
             <PlayerWrapper>
                 <PlayerImage
                     src={player.imageSource}
-                    alt={'3213'}
+                    alt={player.champClass}
                 />
                 <HPBarWrapper>
                     <HPBar $hpPercent={(player.currentHealth / player.maxHealth) * 100} />

@@ -7,7 +7,7 @@ import {
     Subtitle,
     InputNickname,
     ConfirmButton,
-} from "./WelcomeModal.styled";
+} from "./styles";
 import { usePlayer } from '../../context/PlayerContext';
 import { useTranslation } from 'react-i18next';
 

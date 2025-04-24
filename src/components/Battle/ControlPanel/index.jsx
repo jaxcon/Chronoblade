@@ -1,4 +1,4 @@
-import { ActionPanel, ActionButton, } from './ControlPanel.styled';
+import { ActionPanel, ActionButton, } from './styles';
 import { useTranslation } from 'react-i18next';
 
 const ControlPanel = ({ selectedAction, setSelectedAction }) => {

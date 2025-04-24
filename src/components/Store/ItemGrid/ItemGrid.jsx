@@ -1,36 +1,33 @@
-import {
-    ItemsWrapper,
-    ItemCard,
-    ItemName,
-    ItemStats,
-    BuyButton,
-    StockInfo,
-    ItemImage
-} from "./ItemGrid.styled";
-import items from './itemsData';
+import { ItemsWrapper } from "./ItemGrid.styled";
+import { items, getPurchasedCount, getItemCount } from './itemsData';
+import { useTranslation } from 'react-i18next';
+import ItemCard from "./ItemCard";
 
-const ItemGrid = ({ buyedItems, buyNewItem }) => {
+const ItemGrid = ({ buyedItems }) => {
+    const { t: getString } = useTranslation();
 
     return (
         <ItemsWrapper>
-            {items?.map((item) => (
-                <ItemCard key={item.id}>
-                     <ItemImage src={item.image} alt={item.name} />
-                    <ItemName>{item.name}</ItemName>
-                    <ItemStats>{item.effect}</ItemStats>
-                    {item.stock !== Infinity && (
-                        <StockInfo>Осталось: {item.stock}</StockInfo>
-                    )}
-                    <BuyButton
-                        disabled={item.stock === 0}
-                        onClick={() => null}
-                    >
-                        Купить за {item.price}
-                    </BuyButton>
-                </ItemCard>
-            ))}
+            {items.map((item) => {
+                const purchasedCount = getPurchasedCount(buyedItems, item.id);
+                const itemCount = getItemCount(item.id);
+
+                return (
+                    <ItemCard
+                        key={item.id}
+                        item={item}
+                        getString={getString}
+                        purchasedCount={purchasedCount}
+                        remaining={itemCount === Infinity ? '∞' : itemCount - purchasedCount}
+                    />
+                );
+            })}
         </ItemsWrapper>
     );
+
+
+
+
 };
 
 export default ItemGrid;

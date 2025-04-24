@@ -7,7 +7,7 @@ import {
     EnemyWrapper
 } from './enemyRow.styled';
 
-const EnemyRow = ( { enemies }) => {
+const EnemyRow = ( { enemies}) => {
     return (
         <EnemySection>
             {enemies?.map((enemy, index) => (

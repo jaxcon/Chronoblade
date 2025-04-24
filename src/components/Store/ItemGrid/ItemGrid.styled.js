@@ -14,11 +14,12 @@ export const ItemCard = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    background: white;
+    background: #e6edf3;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden;
+    position: relative;
 `;
 
 export const ItemImage = styled.img`
@@ -34,21 +35,16 @@ export const ItemImage = styled.img`
 
 export const ItemName = styled.div`
     font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.925rem;
+    margin-bottom: 0.2rem;
 `;
 
 export const ItemStats = styled.div`
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: #666;
-    flex-grow: 1;
+    margin-bottom: 0.75rem;
 `;
 
-export const StockInfo = styled.div`
-    font-size: 0.75rem;
-    color: #999;
-    margin-bottom: 0.5rem;
-`;
 
 export const BuyButton = styled.button`
     background: #4caf50;
@@ -59,13 +55,18 @@ export const BuyButton = styled.button`
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
-    font-size: 0.75rem;
+    font-size: 0.825rem;
 
     &:hover:enabled {
         background: #43a047;
     }
+
     &:disabled {
         background: #ccc;
         cursor: default;
+    }
+
+    &:not(:disabled):active {
+        transform: scale(0.95);
     }
 `;

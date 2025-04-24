@@ -47,11 +47,13 @@ export const BackButton = styled.button`
     border: 2px solid #b2bac2;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    z-index: 5;
 
     img {
         width: 22px;
         height: 22px;
+        transition: transform 0.3s ease;
     }
 
     &:hover {
@@ -59,12 +61,16 @@ export const BackButton = styled.button`
         border-color: rgba(255, 255, 255, 0.9);
         transform: scale(1.05);
     }
+    &.clicked {
+        opacity: 0;
+        transform: scale(0.8);
+    }
 `;
 
 export const StatBar = styled.div`
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 0.5rem;
     width: 100%;
 `;
 
@@ -72,6 +78,11 @@ export const StatItem = styled.div`
     font-weight: 600;
     font-size: 16px;
     color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 60px;
 `;
 
 export const Divider = styled.div`

@@ -4,7 +4,7 @@ import {
     ModalTitle,
     ModalStats,
     ModalButton
-} from "./DefeatModal.styled";
+} from "./styles";
 
 function DefeatModal({ kills, gold, onRetry, onExit }) {
     return (

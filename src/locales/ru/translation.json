@@ -18,5 +18,18 @@
     "jormungadDescription": "Специалист по мощным заклинаниям.",
     "attackAction": "Атака",
     "skill": "Умение",
-    "item": "Предмет"
+    "item": "Предмет",
+    "buy": "Купить за",
+    "bloodAmulet": "Кровавый Амулет",
+    "bloodAmuletStats": "+10 здоровья",
+    "hawkHelm": "Шлем Ястреба",
+    "hawkHelmStats": "+1 защиты",
+    "runeRing": "Перстень Атаки",
+    "runeRingStats": "+1 атаки",
+    "windRing": "Кольцо Ветра",
+    "windRingStats": "+5 регенерации",
+    "darkAmulet": "Амулет Тьмы",
+    "darkAmuletStats": "+5% вампиризма",
+    "fateShield": "Щит Судьбы",
+    "fateShieldStats": "+5 к основным"
 }
