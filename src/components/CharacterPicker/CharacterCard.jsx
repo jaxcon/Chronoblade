@@ -41,14 +41,20 @@ function CharacterCard({ character, onSwipe }) {
             onTouchEnd={handleTouchEnd}
         >
             <Card>
-                <Name>{getString(character.id)}</Name>
+                <Name>
+                    {getString(character.id)}
+                </Name>
                 <Image src={character.image} alt={getString(character.id)} />
                 <StatsBlock getString={getString} stats={character.stats} />
-                <Description>{getString(character.id + 'Description')}</Description>
+                <Description>
+                    {getString(character.id + 'Description')}
+                </Description>
                 <ChooseButton onClick={() => {
                     updateChampion(character.id);
                     navigate('/');
-                }}>{getString('select')}</ChooseButton>
+                }}>
+                    {getString('select')}
+                </ChooseButton>
             </Card>
         </SwipeArea>
     );

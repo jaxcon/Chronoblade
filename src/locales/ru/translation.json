@@ -31,5 +31,13 @@
     "darkAmulet": "Амулет Тьмы",
     "darkAmuletStats": "+5% вампиризма",
     "fateShield": "Щит Судьбы",
-    "fateShieldStats": "+5 к основным"
+    "fateShieldStats": "+5 к основным",
+    "youLose":"Ты проиграл",
+    "killOverAll":"Убито врагов: ",
+    "goldOverAll":"Заработано золота: ",
+    "xpOverAll":"Заработано опыта: ",
+    "tryAgain":"Попробовать снова",
+    "toMenu":"В меню"
+
+    
 }

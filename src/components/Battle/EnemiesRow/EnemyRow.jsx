@@ -11,15 +11,14 @@ const EnemyRow = ( { enemies}) => {
     return (
         <EnemySection>
             {enemies?.map((enemy, index) => (
-                <EnemyWrapper key={enemy.id}>
+                <EnemyWrapper key={'unit ' + enemy.id + index}>
                     <EnemyImage
                         src={enemy.image}
                         alt={enemy.name}
-                        $isAlive={enemy.isAlive}
                     />
                     <HPBarWrapper>
-                        <HPBar $hpPercent={(enemy.hp / enemy.maxHp) * 100} />
-                        <HPText>{enemy.hp}</HPText>
+                        <HPBar $hpPercent={(enemy.currentHealth / enemy.stats.maxHealth) * 100} />
+                        <HPText>{enemy.currentHealth}</HPText>
                     </HPBarWrapper>
                     
                 </EnemyWrapper>

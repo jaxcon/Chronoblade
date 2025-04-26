@@ -1,12 +1,25 @@
-import React, { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BattleWrapper } from './Battle.styled';
-import { useBattle } from '../../context/BattleContext'
+
+import { usePlayer } from '../../context/PlayerContext';
+import { useBattle } from '../../context/BattleContext';
+
 import EnemyRow from './EnemiesRow/EnemyRow';
 import PlayerRow from './PlayerRow/PlayerRow';
 import ControlPanel from './ControlPanel';
 import TurnHistory from './TurnHistory';
+import DefeatModal from './DefeatModal';
+
+import { usePlay } from '../../hooks/usePlay';
+import { useNavigate } from 'react-router-dom';
+import VictoryModal from './VictoryModal';
 
 const Battle = () => {
+    const [isGameOver, setIsGameOver] = useState(false);
+    const [isBattleWin, setIsBattleWin] = useState(false);
+
+    const navigate = useNavigate();
+    const { champion: championClass, xp } = usePlayer();
     const {
         resetBattle,
         setPlayer,
@@ -17,25 +30,64 @@ const Battle = () => {
         setSelectedAction,
         selectedAction,
         turns,
-        setTurns
+        setTurns,
+        gameResult,
 
     } = useBattle();
+    const initBattle = usePlay();
+
+    const handleExit = useCallback(() => navigate("/"), []);
 
     useEffect(() => {
-        if (!turns?.queue?.length) return;
+        resetBattle();
+        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill);
 
+        return () => {
+            resetBattle();
+        }
+    }, [])
 
-        console.log(turns.queue)
-    }, [turns])
+    useEffect(() => {
+
+        if (player?.currentHealth < 1 && player) {
+
+            setIsGameOver(true);
+        }
+
+    }, [player?.currentHealth])
+
+    useEffect(() => {
+        if (enemies?.length === 0 && player?.currentHealth > 0)
+        {
+            setIsBattleWin(true);
+        }
+        
+    }, [enemies])
+
+    
+
+    if (!turns?.queue?.length) return;
+
 
     return (
         <BattleWrapper>
             <EnemyRow enemies={enemies} />
             <PlayerRow player={player} />
-
-            <ControlPanel selectedAction={selectedAction} setSelectedAction={setSelectedAction} />
-
+            <ControlPanel {...{ selectedAction, setSelectedAction, championClass, xp}} />
             <TurnHistory turns={turns} />
+
+            {isGameOver && (
+                <DefeatModal
+                    onExit={handleExit}
+                    gameResult={gameResult}
+                />
+            )}
+            {isBattleWin && (
+                <VictoryModal
+                    onExit={handleExit}
+                    gameResult={gameResult}
+                />
+            )}
 
         </BattleWrapper>
     );

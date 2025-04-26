@@ -54,7 +54,9 @@ function GameHub() {
                 <TavernButton onClick={() => navigate('champs')} />
             </ButtonsWrapper>
 
-            {!username ? <WelcomeModal /> : <Header />}
+            {!username
+                ? <WelcomeModal />
+                :<Header />}
         </>
 
     );

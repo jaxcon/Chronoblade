@@ -1,5 +1,5 @@
 import { InfoBlock, Icon, Label } from './Header.styled';
-import { calculateLvl } from '../Battle/championDataHandle';
+import { getLvl } from '../Battle/championDataHandle';
 import { icons } from './championClassIcons';
 
 
@@ -10,7 +10,7 @@ function ChampionIcon({ name, exp }) {
             <Icon viewBox="0 0 24 24">
                 {icons[name]}
             </Icon>
-            <Label>{calculateLvl(exp)}</Label>
+            <Label>{getLvl(exp)}</Label>
         </InfoBlock>
     );
 }

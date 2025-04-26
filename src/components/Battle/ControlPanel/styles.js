@@ -4,6 +4,7 @@ export const ActionPanel = styled.div`
     flex: 2;
     display: flex;
     justify-content: space-around;
+    padding-block: 4px;
 `;
 
 export const ActionButton = styled.button`

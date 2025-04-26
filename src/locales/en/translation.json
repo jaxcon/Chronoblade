@@ -31,6 +31,12 @@
     "darkAmulet": "Amulet of Darkness",
     "darkAmuletStats": "+5% lifesteal",
     "fateShield": "Shield of Fate",
-    "fateShieldStats": "+5 basic stats"
+    "fateShieldStats": "+5 basic stats",
+    "youLose":"You lost",
+    "killOverAll":"Killed enemies: ",
+    "goldOverAll":"Earned gold: ",
+    "xpOverAll":"Earned experience: ",
+    "tryAgain":"Try again",
+    "toMenu":"To the city"
 
 }

@@ -24,7 +24,9 @@ const ItemCard = ({ item, getString, purchasedCount, remaining }) => {
                 <ItemStats>{getString(item.id + 'Stats')}</ItemStats>
                 <BuyButton
                     key={key}
-                    className={clicked ? 'clicked' : ''}
+                    className={clicked 
+                        ? 'clicked'
+                        : ''}
                     disabled={item.stock - purchasedCount === 0 || item.price > gold}
                     onClick={() => {
                         setClicked(true);

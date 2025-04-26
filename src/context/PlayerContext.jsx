@@ -10,7 +10,7 @@ export function PlayerProvider({ children }) {
     const [kills, setKills] = useState(0);
     const [gold, setGold] = useState(2340);
     const [champion, setChampion] = useState('draygar');
-    const [xp, setXp] = useState(0);
+    const [xp, setXp] = useState(1110);
     const [items, setItems] = useState([
         {
             id: 'bloodAmulet',

@@ -18,8 +18,12 @@ function SettingsModal({ onClose }) {
     return (
         <Overlay onClick={onClose}>
             <Modal onClick={e => e.stopPropagation()}>
-                <CloseButton onClick={onClose}>×</CloseButton>
-                <Title>{getString('settings')}</Title>
+                <CloseButton onClick={onClose}>
+                    ×
+                </CloseButton>
+                <Title>
+                    {getString('settings')}
+                </Title>
 
                 <h4>{getString('language')}</h4>
                 <FlagsWrapper>

@@ -10,7 +10,8 @@ export function BattleProvider({ children }) {
     const [selectedAction, setSelectedAction] = useState("attack");
     const [gameResult, setGameResult] = useState({});
     const [turns, setTurns] = useState([]);
-    const { gold, setGold } = usePlayer();
+    const [battleNumber, setBattleNumber] = useState([]);///////////////////////////////////////////////////////////////
+    const { setGold } = usePlayer();
 
     const resetBattle = () => {
         setPlayer({});
@@ -20,24 +21,25 @@ export function BattleProvider({ children }) {
         setGameResult({gold: 0, xp: 0, unitKills: 0})
     };
 
-    const handleEnemyKill = (exp, lootGold) => {
-        const newXp = player.xp + exp;
+    const handleEnemyKill = (value) => {
+        // const newXp = player.xp + value;
 
-        if (calculateLvl(newXp) > calculateLvl(player.xp)) {
-            const newStats = getStatsFromLvl(calculateLvl(newXp), player.champClass)
-            setPlayer({ ...player, xp: newXp, stats: newStats });
-        } else {
-            setPlayer({ ...player, xp: newXp })
-        }
+        // if (calculateLvl(newXp) > calculateLvl(player.xp)) {
+        //     const newStats = getStatsFromLvl(calculateLvl(newXp), player.champClass)
+        //     setPlayer({ ...player, xp: newXp, stats: newStats });
+        // } else {
+        //     setPlayer({ ...player, xp: newXp })
+        // }
 
-        setGold(prevGold => prevGold + lootGold);
+        // setGold(prevGold => prevGold + lootGold);
 
         setGameResult(prev => ({
             ...prev,
-            gold: prev.gold + lootGold,
-            xp: prev.xp + exp,
+            gold: prev.gold + value/2,
+            xp: prev.xp + value,
             unitKills: prev.unitKills + 1
         }));    
+
     }
 
     return (
@@ -51,7 +53,8 @@ export function BattleProvider({ children }) {
             resetBattle,
             handleEnemyKill,
             turns,
-            setTurns
+            setTurns,
+            gameResult
         }}>
             {children}
         </BattleContext.Provider>

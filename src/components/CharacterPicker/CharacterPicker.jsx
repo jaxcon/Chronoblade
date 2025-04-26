@@ -8,11 +8,9 @@ function CharacterPicker() {
     const current = characterData[index];
 
     const handleSwipe = (direction) => {
-        if (direction === 'left') {
-            setIndex((prev) => (prev + 1) % characterData.length);
-        } else {
-            setIndex((prev) => (prev - 1 + characterData.length) % characterData.length);
-        }
+        direction === 'left'
+            ? setIndex((prev) => (prev + 1) % characterData.length)
+            : setIndex((prev) => (prev - 1 + characterData.length) % characterData.length);
     };
 
     return (

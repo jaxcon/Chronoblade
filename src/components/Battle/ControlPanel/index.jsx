@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { ActionPanel, ActionButton, } from './styles';
 import { useTranslation } from 'react-i18next';
+import { SkillModal } from './SkillModal';
 
-const ControlPanel = ({ selectedAction, setSelectedAction }) => {
+const ControlPanel = ({ selectedAction, setSelectedAction, championClass, xp }) => {
+    const [skillModalOpen, setSkillModalOpen] = useState(false);
     const { t: getString } = useTranslation();
 
     return (
@@ -11,7 +14,10 @@ const ControlPanel = ({ selectedAction, setSelectedAction }) => {
                 {getString('attackAction')}
             </ActionButton>
 
-            <ActionButton selected={selectedAction === "skill"} onClick={() => setSelectedAction("skill")}>
+            <ActionButton selected={selectedAction === "skill"} onClick={() => {
+                    setSelectedAction("pause");
+                    setSkillModalOpen(true);
+            }}>
                 <img src="assets/icons/skillIcon.png" alt="skill" />
                 {getString('skill')}
             </ActionButton>
@@ -20,6 +26,12 @@ const ControlPanel = ({ selectedAction, setSelectedAction }) => {
                 <img src="assets/icons/itemIcon.png" alt="item" />
                 {getString('item')}
             </ActionButton>
+            <SkillModal
+                open={skillModalOpen}
+                onClose={() => { setSkillModalOpen(false); setSelectedAction('attack') }}
+                championClass={championClass}
+                xp={xp}
+            />
         </ActionPanel>
     )
 };

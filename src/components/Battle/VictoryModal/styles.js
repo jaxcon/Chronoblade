@@ -5,20 +5,20 @@ const fadeIn = keyframes`
     to   { opacity: 1; transform: scale(1); }
 `;
 
-const skullPulse = keyframes`
-    0%, 100% { 
-        transform: scale(1) rotate(0deg);
-        filter: drop-shadow(0 0 8px rgba(255, 50, 50, 0.7));
-    }
-    50% { 
-        transform: scale(1.1) rotate(5deg);
-        filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.9));
-    }
+const victoryGlow = keyframes`
+    0%, 100% { text-shadow: 0 0 8px rgba(100, 255, 100, 0.7); }
+    50% { text-shadow: 0 0 15px rgba(50, 255, 50, 0.9); }
 `;
 
-const textGlow = keyframes`
-    0%, 100% { text-shadow: 0 0 8px rgba(255, 100, 100, 0.7); }
-    50% { text-shadow: 0 0 15px rgba(255, 50, 50, 0.9); }
+const trophyShine = keyframes`
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+    }
+    50% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.9));
+    }
 `;
 
 export const ModalOverlay = styled.div`
@@ -40,34 +40,29 @@ export const ModalContent = styled.div`
     text-align: center;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 0 24px rgba(255, 0, 0, 0.4);
-
+    box-shadow: 0 0 24px rgba(0, 255, 0, 0.4);
     animation: ${fadeIn} 0.4s ease-out forwards;
 `;
 
 export const ModalTitle = styled.h2`
     font-size: 28px;
     margin-bottom: 16px;
-    color: #ff4d4d;
-    animation: ${textGlow} 2s ease-in-out infinite;
+    color: #4dff4d;
+    animation: ${victoryGlow} 2s ease-in-out infinite;
     text-transform: uppercase;
     letter-spacing: 2px;
 `;
 
-export const DefeatIcon = styled.div`
+export const VictoryIcon = styled.div`
     font-size: 48px;
     margin: 16px 0;
-    animation: ${skullPulse} 2s ease-in-out infinite;
-    transform-origin: center;
+    animation: ${trophyShine} 2s ease-in-out infinite;
     cursor: default;
 `;
 
 export const ModalStats = styled.div`
-    margin-bottom: 24px;
-    font-size: 16px;
     line-height: 1.5;
 `;
-
 
 export const StatItem = styled.div`
     display: flex;
@@ -90,8 +85,8 @@ export const ButtonGroup = styled.div`
 `;
 
 export const ModalButton = styled.button`
-    background: #ffc107;
-    color: black;
+    background: #4CAF50;
+    color: white;
     font-weight: bold;
     padding: 12px 24px;
     border: none;
@@ -100,8 +95,7 @@ export const ModalButton = styled.button`
     margin: 0 8px;
     
     &:hover {
-        background: #ffda44;
+        background: #66BB6A;
         transform: scale(1.05);
     }
-  }
 `;

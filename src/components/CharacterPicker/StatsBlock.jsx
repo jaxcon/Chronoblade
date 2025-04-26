@@ -1,22 +1,24 @@
 import { Stats, StatRow } from './CharacterPicker.styled';
 
 const StatsBlock = ({ getString, stats }) => {
+    const { attack, defense, speed } = stats;
+    
     return (
         <Stats>
             <StatRow>
                 <span className="icon">🗡</span>
                 <span className="label">{getString('attack')}</span>
-                <span>{stats.attack}</span>
+                <span>{attack}</span>
             </StatRow>
             <StatRow>
                 <span className="icon">🛡</span>
                 <span className="label">{getString('defense')}</span>
-                <span>{stats.defense}</span>
+                <span>{defense}</span>
             </StatRow>
             <StatRow>
                 <span className="icon">⚡️</span>
                 <span className="label">{getString('speed')}</span>
-                <span>{stats.speed}</span>
+                <span>{speed}</span>
             </StatRow>
         </Stats>
     )
