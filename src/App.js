@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Store from './components/Store/Store';
+import Store from './components/Store';
 import { PlayerProvider } from './context/PlayerContext';
-import CharacterPicker from './components/CharacterPicker/CharacterPicker'
+import CharacterPicker from './components/CharacterPicker'
 import AppWrapper from './AppWrapper';
 import GameHub from './components/GameHub/GameHub';
 import Battle from './components/Battle/Battle';

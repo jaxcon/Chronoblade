@@ -6,11 +6,11 @@ import {
     Description,
     SwipeArea,
     ChooseButton
-} from './CharacterPicker.styled';
-import { usePlayer } from '../../context/PlayerContext';
+} from './styles';
+import { usePlayer } from '../../../context/PlayerContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import StatsBlock from './StatsBlock';
+import StatsBlock from '../StatsBlock';
 
 
 function CharacterCard({ character, onSwipe }) {

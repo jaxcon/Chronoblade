@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import characterData from './characterData';
 import CharacterCard from './CharacterCard';
-import { Wrapper, NavDots, Dot } from './CharacterPicker.styled';
+import { Wrapper, NavDots, Dot } from './styles';
 
 function CharacterPicker() {
     const [index, setIndex] = useState(0);

@@ -3,7 +3,7 @@ import { creepsList } from '../Battle/unitList';
 
 export const initPlayer = (xp, championClass, setPlayer) => {
     const champLvl = getLvl(xp);
-    const { minAttack, maxAttack, defense, speed, criticalChance, shield, health: statHealth, skills } = getStatsFromLvl(champLvl, championClass);
+    const { minAttack, maxAttack, defense, speed, criticalChance, shield, health: statHealth, skills, Lifesteal } = getStatsFromLvl(champLvl, championClass);
     const { imageSource, avatarSource } = getImagesForChamp(championClass);
 
     const player = {
@@ -13,18 +13,18 @@ export const initPlayer = (xp, championClass, setPlayer) => {
             minAttack: minAttack,
             maxAttack: maxAttack,
             defense: defense,
-            speed: 0,
+            speed: speed,
             criticalChance: criticalChance,
-            shield: shield,
             health: statHealth,
+            Lifesteal: Lifesteal,
             skills: skills
         },
+        shield: shield,
         imageSource: imageSource,
         avatar: avatarSource,
         xp: xp,
         maxHealth: statHealth, //+itemHealth + passive
         currentHealth: statHealth
-
     }
     setPlayer(player);
 
@@ -40,53 +40,39 @@ export const generateEnemies = (totalValue) => {
     const random = Math.random();
     const enemyCount = (random < 0.7) ? 3 : (random < 0.91) ? 2 : 1;
 
-
-    const availableEnemies = creepsList.map(enemy => ({
-        ...enemy,
-        id: crypto.randomUUID(),
-        currentHealth: enemy.stats.maxHealth
-    }));
-
-    availableEnemies.sort((a, b) => a.value - b.value);
+    const availableEnemies = [...creepsList].sort((a, b) => a.value - b.value);
 
     const selectedEnemies = [];
     let remainingValue = totalValue;
 
+    const processEnemy = (enemyPool) => {
+        const selected = { ...enemyPool, id: crypto.randomUUID() };
+        selectedEnemies.push(selected);
+        remainingValue -= selected.value;
+        return selected;
+    };
+
     for (let i = 0; i < enemyCount; i++) {
+        const isLastEnemy = i === enemyCount - 1;
+        const maxValue = isLastEnemy
+            ? remainingValue
+            : remainingValue / (enemyCount - i);
 
-        if (i === enemyCount - 1) {
-            const suitableEnemies = availableEnemies.filter(
-                enemy => enemy.value <= remainingValue
-            );
+        const suitableEnemies = availableEnemies.filter(enemy => enemy.value <= maxValue);
+        const enemyPool = suitableEnemies.length > 0
+            ? suitableEnemies[
+                isLastEnemy
+                    ? suitableEnemies.length - 1
+                    : Math.floor(Math.random() * suitableEnemies.length)
+            ]
+            : availableEnemies[0];
 
-            if (suitableEnemies.length > 0) {
-                const selected = suitableEnemies[suitableEnemies.length - 1];
-                selectedEnemies.push(selected);
-                remainingValue -= selected.value;
-            } else {
-                selectedEnemies.push(availableEnemies[0]);
-                remainingValue -= availableEnemies[0].value;
-            }
-        } else {
-            const maxValuePerEnemy = remainingValue / (enemyCount - i);
-            const suitableEnemies = availableEnemies.filter(
-                enemy => enemy.value <= maxValuePerEnemy
-            );
-
-            if (suitableEnemies.length > 0) {
-                const randomIndex = Math.floor(Math.random() * suitableEnemies.length);
-                const selected = suitableEnemies[randomIndex];
-                selectedEnemies.push(selected);
-                remainingValue -= selected.value;
-            } else {
-                selectedEnemies.push(availableEnemies[0]);
-                remainingValue -= availableEnemies[0].value;
-            }
-        }
+        processEnemy(enemyPool);
     }
 
     return selectedEnemies;
 };
+
 
 export const initEnemies = (setEnemies, totalValue) => {
     const enemies = generateEnemies(totalValue);

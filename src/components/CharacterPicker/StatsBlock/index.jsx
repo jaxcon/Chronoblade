@@ -1,4 +1,4 @@
-import { Stats, StatRow } from './CharacterPicker.styled';
+import { Stats, StatRow } from './styles';
 
 const StatsBlock = ({ getString, stats }) => {
     const { attack, defense, speed } = stats;

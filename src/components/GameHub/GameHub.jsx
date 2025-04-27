@@ -11,7 +11,7 @@ import {
     BirdsContainer
 } from './GameHub.styled';
 import WelcomeModal from '../WelcomeModal';
-import Header from '../Header/Header';
+import Header from '../Header';
 import Smoke from './Smoke';
 import Bird from './Bird';
 

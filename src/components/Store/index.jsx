@@ -1,6 +1,6 @@
-import { ShopWrapper } from "./Store.styled";
+import { ShopWrapper } from "./styles";
 import { usePlayer } from '../../context/PlayerContext';
-import ItemGrid from './ItemGrid/ItemGrid';
+import ItemGrid from './ItemGrid';
 import HeaderRow from './HeaderRow';
 import WaveSeparator from './WaveSeparator';
 

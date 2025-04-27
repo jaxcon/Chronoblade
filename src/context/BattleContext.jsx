@@ -9,14 +9,14 @@ export function BattleProvider({ children }) {
     const [enemies, setEnemies] = useState([]);
     const [selectedAction, setSelectedAction] = useState("attack");
     const [gameResult, setGameResult] = useState({});
-    const [turns, setTurns] = useState([]);
+    const [turns, setTurns] = useState({queue: [], turnOrder: 0, cooldowns: [{skill: 'name', rounds: 1},{skill: 'name', rounds: 1}]});
     const [battleNumber, setBattleNumber] = useState([]);///////////////////////////////////////////////////////////////
     const { setGold } = usePlayer();
 
     const resetBattle = () => {
         setPlayer({});
         setEnemies([]);
-        setTurns([]);
+        setTurns({queue: [], turnOrder: 0});
         setSelectedAction("attack");
         setGameResult({gold: 0, xp: 0, unitKills: 0})
     };

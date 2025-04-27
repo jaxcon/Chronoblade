@@ -4,10 +4,13 @@ import {
     PlayerImage,
     HPBarWrapper,
     HPBar,
+    ShieldBar,
     HPText
-} from './PlayerRow.styled';
+} from './styles';
 
 const PlayerRow = ( { player }) => {
+    const hpPercent = (player.currentHealth / player.maxHealth) * 100;
+    const shieldPercent = (player.shield / player.maxHealth) * 100;
 
     return (
         <PlayerSection>
@@ -17,7 +20,10 @@ const PlayerRow = ( { player }) => {
                     alt={player.champClass}
                 />
                 <HPBarWrapper>
-                    <HPBar $hpPercent={(player.currentHealth / player.maxHealth) * 100} />
+                    <HPBar $hpPercent={hpPercent} />
+                    {player.shield > 0 && (
+                        <ShieldBar $shieldPercent={shieldPercent} />
+                    )}
                     <HPText>{player.currentHealth}</HPText>
                 </HPBarWrapper>
 

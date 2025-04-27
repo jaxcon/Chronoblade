@@ -53,7 +53,6 @@ export const BackButton = styled.button`
     img {
         width: 22px;
         height: 22px;
-        transition: transform 0.3s ease;
     }
 
     &:hover {

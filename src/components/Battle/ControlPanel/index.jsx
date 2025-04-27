@@ -14,7 +14,7 @@ const ControlPanel = ({ selectedAction, setSelectedAction, championClass, xp }) 
                 {getString('attackAction')}
             </ActionButton>
 
-            <ActionButton selected={selectedAction === "skill"} onClick={() => {
+            <ActionButton  selected={selectedAction === "skill"} onClick={() => {
                     setSelectedAction("pause");
                     setSkillModalOpen(true);
             }}>
@@ -28,9 +28,10 @@ const ControlPanel = ({ selectedAction, setSelectedAction, championClass, xp }) 
             </ActionButton>
             <SkillModal
                 open={skillModalOpen}
-                onClose={() => { setSkillModalOpen(false); setSelectedAction('attack') }}
+                onClose={() => setSkillModalOpen(false)}
                 championClass={championClass}
                 xp={xp}
+                setSelectedAction={setSelectedAction}
             />
         </ActionPanel>
     )

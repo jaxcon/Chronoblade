@@ -4,8 +4,8 @@ import { BattleWrapper } from './Battle.styled';
 import { usePlayer } from '../../context/PlayerContext';
 import { useBattle } from '../../context/BattleContext';
 
-import EnemyRow from './EnemiesRow/EnemyRow';
-import PlayerRow from './PlayerRow/PlayerRow';
+import EnemyRow from './EnemiesRow';
+import PlayerRow from './PlayerRow';
 import ControlPanel from './ControlPanel';
 import TurnHistory from './TurnHistory';
 import DefeatModal from './DefeatModal';
@@ -40,7 +40,7 @@ const Battle = () => {
 
     useEffect(() => {
         resetBattle();
-        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill);
+        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
 
         return () => {
             resetBattle();

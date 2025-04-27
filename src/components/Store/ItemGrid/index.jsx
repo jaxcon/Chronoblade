@@ -1,4 +1,4 @@
-import { ItemsWrapper } from "./ItemGrid.styled";
+import { ItemsWrapper } from "./styles";
 import { items, getPurchasedCount, getItemCount } from './itemsData';
 import { useTranslation } from 'react-i18next';
 import ItemCard from "./ItemCard";

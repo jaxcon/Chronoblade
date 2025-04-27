@@ -5,9 +5,10 @@ import {
     HPBar,
     HPText,
     EnemyWrapper
-} from './enemyRow.styled';
+} from './styles';
 
-const EnemyRow = ( { enemies}) => {
+const EnemiesRow = ({ enemies }) => {
+
     return (
         <EnemySection>
             {enemies?.map((enemy, index) => (
@@ -17,14 +18,15 @@ const EnemyRow = ( { enemies}) => {
                         alt={enemy.name}
                     />
                     <HPBarWrapper>
-                        <HPBar $hpPercent={(enemy.currentHealth / enemy.stats.maxHealth) * 100} />
-                        <HPText>{enemy.currentHealth}</HPText>
+                        <HPBar $hpPercent={enemy.currentHealth / enemy.stats.maxHealth * 100} />
+                        <HPText>
+                            {enemy.currentHealth}
+                        </HPText>
                     </HPBarWrapper>
-                    
                 </EnemyWrapper>
             ))}
         </EnemySection>
     )
 };
 
-export default EnemyRow;
+export default EnemiesRow;

@@ -12,7 +12,8 @@ export const creepsList = [
             defense: 0
         },
         minAttack: 30,
-        maxAttack: 40
+        maxAttack: 40,
+        currentHealth: 70
     },
     {
         name: 'Leprechaun',
@@ -26,7 +27,8 @@ export const creepsList = [
             defense: 0
         },
         minAttack: 32,
-        maxAttack: 42
+        maxAttack: 42,
+        currentHealth: 80
     },
     {
         name: 'Unicorn',
@@ -40,7 +42,8 @@ export const creepsList = [
             defense: 3
         },
         minAttack: 40,
-        maxAttack: 45
+        maxAttack: 45,
+        currentHealth: 110
     },
     {
         name: 'Igoshi',
@@ -54,7 +57,8 @@ export const creepsList = [
             defense: 1
         },
         minAttack: 42,
-        maxAttack: 45
+        maxAttack: 45,
+        currentHealth: 120
     },
     {
         name: 'Div',
@@ -68,7 +72,8 @@ export const creepsList = [
             defense: 2
         },
         minAttack: 50,
-        maxAttack: 53
+        maxAttack: 53,
+        currentHealth: 140
     },
     {
         name: 'Swamp Undead',
@@ -82,7 +87,8 @@ export const creepsList = [
             defense: 1
         },
         minAttack: 52,
-        maxAttack: 58
+        maxAttack: 58,
+        currentHealth: 160
     },
 
     // {

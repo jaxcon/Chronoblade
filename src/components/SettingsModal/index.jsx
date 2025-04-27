@@ -8,7 +8,7 @@ import {
     FlagButton,
     VolumeSlider,
     CloseButton
-} from './SettingsModal.styled';
+} from './styles';
 import { usePlayer } from '../../context/PlayerContext';
 
 function SettingsModal({ onClose }) {

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 
 const HeaderRow = ({ gold, buyedItems }) => {
     const [clicked, setClicked] = useState(false);
-    
+
     const stats = useMemo(() => calculateStats(buyedItems), [buyedItems]);
     const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const HeaderRow = ({ gold, buyedItems }) => {
         <HeaderContainer>
             <TopRow>
                 <BackButton className={clicked ? "clicked" : ""} onClick={handleBack}>
-                    <img src={'assets/icons/back.svg'} alt="back" />
+                    <img src='assets/icons/back.svg' alt="back" />
                 </BackButton>
 
                 <CurrencyGroup>
