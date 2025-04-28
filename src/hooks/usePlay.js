@@ -1,26 +1,30 @@
-import { getTotalValue, initPlayer, initEnemies, initTurns, getAttackDamage } from '../components/Battle/battleUtils';
+import { getTotalValue, initPlayer, initEnemies, initTurns, getAttackDamage } from '../utils/battleUtils';
 import { useBattle } from '../context/BattleContext';
 import { useEffect, useRef } from 'react';
+import { playSoundByName } from '../utils/soundManager';
+import { usePlayer } from '../context/PlayerContext';
 
 export const usePlay = () => {
     const { selectedAction } = useBattle();
     const selectedActionRef = useRef(selectedAction);
+    const { volume } = usePlayer();
 
     useEffect(() => {
         selectedActionRef.current = selectedAction;
     }, [selectedAction]);
 
-    const delayNextTurn = (enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction) => {
+    const delayNextTurn = (enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, delay = 1000) => {
         setTimeout(() => {
-            iterateTurns(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
-        }, 1000);
+            iterateTurns(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
+        }, delay);
     };
 
 
-    const handleSkill = (skill, player, enemies, setPlayer, setEnemies, turns, setTurns, handleEnemyKill, setSelectedAction) => {
+    const handleSkill = (skill, player, enemies, setPlayer, setEnemies, turns, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect) => {
         switch(skill) {
             case 'shieldWall':
-                const newPlayer = {...player, shield: Math.ceil(player.maxHealth / 2.5)};
+                const shieldValue = Math.ceil(player.maxHealth / 2.5);
+                const newPlayer = {...player, shield: shieldValue};
                 setPlayer(newPlayer);
 
                 const newTurns = {
@@ -29,7 +33,15 @@ export const usePlay = () => {
                 };
                 setTurns(newTurns);
                 setSelectedAction('attack');
-                delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
+
+                addAttackEffect({
+                    unitId: player.id,
+                    shield: shieldValue,
+                    type: 'shield'
+                });
+                playSoundByName('getShield', volume);
+
+                delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
                 break;
             case 'rageStrike':
                 
@@ -52,25 +64,21 @@ export const usePlay = () => {
         }
     }
 
-
-
-    const initBattle = (xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction) => {
+    const initBattle = (xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect) => {
         const totalValue = getTotalValue(xp);
         const player = initPlayer(xp, championClass, setPlayer);
         const enemies = initEnemies(setEnemies, totalValue);
         const turns = initTurns(player, enemies, setTurns);
 
-        iterateTurns(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
+        delayNextTurn(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, 500);
     }
 
-    const iterateTurns = (enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction) => {
+    const iterateTurns = (enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect) => {
         if (player.currentHealth <= 0) return;
         if (enemies.length === 0) return;
 
         if (selectedActionRef.current === 'pause') {
-            setTimeout(() => {
-                iterateTurns(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
-            }, 250);
+            delayNextTurn(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, 250)
             return;
         }
 
@@ -84,24 +92,21 @@ export const usePlay = () => {
             switch (action) {
                 case 'attack':
                     const randomTarget = Math.floor(Math.random() * (enemies.length));
-                    const attackDamage = getAttackDamage(player.stats.minAttack, player.stats.maxAttack);
+                    const attackDamage = getAttackDamage(player.stats.minAttack, player.stats.maxAttack);     
 
                     const newEnemyHealth = enemies[randomTarget].currentHealth - attackDamage;
-                    const newEnemies = (newEnemyHealth <= 0)
+                    const isEnemyKilled = newEnemyHealth <= 0;
+                    const newEnemies = isEnemyKilled
                         ? enemies.filter(enemy => enemy.id !== enemies[randomTarget].id)
                         : enemies.map((enemy, index) =>
                             index === randomTarget
                                 ? { ...enemy, currentHealth: newEnemyHealth }
                                 : enemy
                         );
-
-                    setEnemies(newEnemies);
                     
-                    if (newEnemyHealth <= 0) {
-                        handleEnemyKill(enemies[randomTarget].value);
-                    }
+                    setEnemies(newEnemies);
 
-                    const newQueue = (newEnemyHealth <= 0)
+                    const newQueue = (isEnemyKilled)
                         ? turns.queue.filter(unit => unit.id !== enemies[randomTarget].id)
                         : turns.queue;
 
@@ -109,12 +114,30 @@ export const usePlay = () => {
                     const newTurns = ({ queue: newQueue, turnOrder: nextTurnOrder });
                     setTurns(newTurns);
 
-                    delayNextTurn(newEnemies, player, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
+                    if (isEnemyKilled) {
+                        handleEnemyKill(enemies[randomTarget].value);
+
+                        addAttackEffect({
+                            unitId: player.id,
+                            killedAvatar: enemies[randomTarget].avatar,
+                            damage: attackDamage,
+                            type: 'kill'
+                          });
+                        playSoundByName('kill', volume);
+                    } else {
+                        addAttackEffect({
+                            unitId: enemies[randomTarget].id,
+                            damage: attackDamage
+                          });
+                        playSoundByName('attack', volume);
+                    }
+
+                    delayNextTurn(newEnemies, player, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
                     break;
                     
                 case 'skill':
                     const skill = selectedActionRef.current.split(' ')[1];
-                    handleSkill(skill, player, enemies, setPlayer, setEnemies, turns, setTurns, handleEnemyKill, setSelectedAction);
+                    handleSkill(skill, player, enemies, setPlayer, setEnemies, turns, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
             }
 
 
@@ -132,8 +155,14 @@ export const usePlay = () => {
             const nextTurnOrder = (turns.turnOrder + 1) % turns.queue.length;
             const newTurns = ({ queue: turns.queue, turnOrder: nextTurnOrder });
             setTurns(newTurns);
+            addAttackEffect({
+                unitId: player.id,
+                damage: attackDamage
+              });
 
-            delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
+            playSoundByName('gotHitting', volume);
+
+            delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
         }
     }
 

@@ -1,4 +1,4 @@
-import styled, { keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const flapAnimation = keyframes`
     0%, 100% { transform: rotate(0deg); }
@@ -10,14 +10,32 @@ const flyAnimation = keyframes`
     100% { transform: translateX(calc(100vw + 100px)) translateY(-100px); }
 `;
 
+const flashAnimation = keyframes`
+    0% { filter: brightness(100%); }
+    50% { filter: brightness(500%); }
+    100% { filter: brightness(100%); }
+`;
+
 export const BirdContainer = styled.div`
     position: absolute;
     width: ${props => props.$size || '180px'};
-    height: ${props => props.$size || '810px'};
+    height: ${props => props.$size || '180px'};
     top: ${props => props.$top || '30%'};
     left: ${props => props.$left || '10%'};
-    animation: ${flyAnimation} ${props => props.$duration || '20s'} linear infinite;
-    z-index: 10;
+    animation: 
+        ${props => props.$isClicked ? flashAnimation : flyAnimation} 
+        ${props => props.$isClicked ? '0.5s' : props.$duration || '20s'} 
+        ${props => props.$isClicked ? 'ease-out' : 'linear'} 
+        ${props => props.$isClicked ? 'forwards' : 'infinite'};
+    z-index: 14;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+    
+    &:active, &:focus {
+        outline: none;
+    }
 `;
 
 export const BirdBody = styled.div`

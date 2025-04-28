@@ -1,3 +1,5 @@
+import { useBattle } from '../../../context/BattleContext';
+import ActionEffect from '../ActionEffect';
 import {
     PlayerSection,
     PlayerWrapper,
@@ -11,6 +13,8 @@ import {
 const PlayerRow = ( { player }) => {
     const hpPercent = (player.currentHealth / player.maxHealth) * 100;
     const shieldPercent = (player.shield / player.maxHealth) * 100;
+
+    const { attackEffects } = useBattle();
 
     return (
         <PlayerSection>
@@ -26,7 +30,17 @@ const PlayerRow = ( { player }) => {
                     )}
                     <HPText>{player.currentHealth}</HPText>
                 </HPBarWrapper>
-
+                {attackEffects
+                    .filter(effect => effect.unitId === player.id)
+                    .map((effect) => (
+                            <ActionEffect
+                                key={effect.id}
+                                damage={effect.damage}
+                                type={effect.type}
+                                avatar={effect.killedAvatar}
+                                shield={effect.shield}
+                            />
+                    ))}
             </PlayerWrapper>
         </PlayerSection>
     )

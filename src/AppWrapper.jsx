@@ -35,9 +35,7 @@ function AppWrapper({ children }) {
         const handleUserInteraction = () => {
             if (!isAudioStarted && audioRef.current) {
                 audioRef.current.volume = volume;
-                audioRef.current.play().catch((e) => {
-                    console.warn('Autoplay blocked:', e);
-                });
+                audioRef.current.play();
                 setIsAudioStarted(true);
                 document.removeEventListener('click', handleUserInteraction);
             }

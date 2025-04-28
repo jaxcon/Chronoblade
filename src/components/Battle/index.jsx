@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { BattleWrapper } from './Battle.styled';
+import { BattleWrapper } from './styles';
 
 import { usePlayer } from '../../context/PlayerContext';
 import { useBattle } from '../../context/BattleContext';
@@ -32,7 +32,7 @@ const Battle = () => {
         turns,
         setTurns,
         gameResult,
-
+        addAttackEffect,
     } = useBattle();
     const initBattle = usePlay();
 
@@ -40,7 +40,7 @@ const Battle = () => {
 
     useEffect(() => {
         resetBattle();
-        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction);
+        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
 
         return () => {
             resetBattle();
@@ -50,8 +50,9 @@ const Battle = () => {
     useEffect(() => {
 
         if (player?.currentHealth < 1 && player) {
-
-            setIsGameOver(true);
+            setTimeout(() => {
+                setIsGameOver(true);
+            }, 500);   
         }
 
     }, [player?.currentHealth])
@@ -59,7 +60,9 @@ const Battle = () => {
     useEffect(() => {
         if (enemies?.length === 0 && player?.currentHealth > 0)
         {
-            setIsBattleWin(true);
+            setTimeout(() => {
+                setIsBattleWin(true);
+            }, 1000);  
         }
         
     }, [enemies])

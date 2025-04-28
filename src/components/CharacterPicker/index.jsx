@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import characterData from './characterData';
+import characterData from '../../utils/characterData';
 import CharacterCard from './CharacterCard';
 import { Wrapper, NavDots, Dot } from './styles';
 

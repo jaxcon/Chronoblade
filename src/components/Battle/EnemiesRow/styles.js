@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EnemySection = styled.div`
     flex: 3;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
     column-gap: 6px;
@@ -34,7 +34,11 @@ export const HPBar = styled.div`
     left: 0;
     height: 100%;
     width: ${props => props.$hpPercent}%;
-    background: linear-gradient(90deg, #00e676, #00c853);
+    background: ${({ $hpPercent }) => {
+        if ($hpPercent < 30) return 'linear-gradient(90deg, #ff5252, #d32f2f)';
+        if ($hpPercent < 70) return 'linear-gradient(90deg, #ffeb3b, #fbc02d)';
+        return 'linear-gradient(90deg, #00e676, #00c853)';
+    }};
     transition: width 0.3s ease;
     z-index: 2;
 `;
@@ -59,4 +63,5 @@ export const EnemyWrapper = styled.div`
     align-items: center;
     max-width: 30vw;
     height: 100%;
+    position: relative;
 `;

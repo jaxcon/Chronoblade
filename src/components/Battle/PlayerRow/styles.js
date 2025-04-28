@@ -12,6 +12,9 @@ export const PlayerWrapper = styled.div`
     display: "flex";
     flexDirection: "column";
     alignItems: "center";
+    position: relative;
+    justify-content: center;
+    height: 100%;
 `
 
 export const PlayerImage = styled.img`
@@ -37,8 +40,11 @@ export const HPBar = styled.div`
     left: 0;
     height: 100%;
     width: ${({ $hpPercent }) => $hpPercent}%;
-    background: linear-gradient(90deg, #00e676, #00c853);
-    transition: width 0.3s ease;
+    background: ${({ $hpPercent }) => {
+        if ($hpPercent < 30) return 'linear-gradient(90deg, #ff5252, #d32f2f)';
+        if ($hpPercent < 70) return 'linear-gradient(90deg, #ffeb3b, #fbc02d)';
+        return 'linear-gradient(90deg, #00e676, #00c853)';
+    }};
     z-index: 1;
 `;
 
@@ -50,14 +56,11 @@ export const ShieldBar = styled.div`
     width: ${({ $shieldPercent }) => $shieldPercent}%;
     background: rgba(66, 165, 245, 0.7);
     box-shadow: 0 0 6px rgba(66, 165, 245, 0.8);
-    transition: width 0.3s ease;
     z-index: 2;
-    pointer-events: none;
 `;
 
 export const HPText = styled.div`
     position: relative;
-    z-index: 3;
     width: 100%;
     height: 100%;
     color: #fff;
@@ -66,6 +69,6 @@ export const HPText = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
     text-shadow: 0 0 2px #000;
+    z-index: 3;
 `;

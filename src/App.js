@@ -3,11 +3,10 @@ import Store from './components/Store';
 import { PlayerProvider } from './context/PlayerContext';
 import CharacterPicker from './components/CharacterPicker'
 import AppWrapper from './AppWrapper';
-import GameHub from './components/GameHub/GameHub';
-import Battle from './components/Battle/Battle';
+import GameHub from './components/GameHub';
+import Battle from './components/Battle';
 
 function App() {
-
     return (
         <PlayerProvider>
             <Router>

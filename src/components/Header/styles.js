@@ -23,6 +23,7 @@ export const SettingsButton = styled.button`
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 15;
 
     &:hover {
         transform: scale(1.05);

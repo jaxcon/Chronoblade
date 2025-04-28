@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { calculateLvl, getStatsFromLvl } from "../components/Battle/championDataHandle";
+import { calculateLvl, getStatsFromLvl } from "../utils/championDataHandle";
 import { usePlayer } from './PlayerContext';
 
 const BattleContext = createContext();
@@ -12,6 +12,17 @@ export function BattleProvider({ children }) {
     const [turns, setTurns] = useState({queue: [], turnOrder: 0, cooldowns: [{skill: 'name', rounds: 1},{skill: 'name', rounds: 1}]});
     const [battleNumber, setBattleNumber] = useState([]);///////////////////////////////////////////////////////////////
     const { setGold } = usePlayer();
+    const [attackEffects, setAttackEffects] = useState([]);
+
+    const addAttackEffect = (effect) => {
+        const id = Date.now(); // Уникальный ID
+        setAttackEffects(prev => [...prev, { ...effect, id }]);
+        
+
+        setTimeout(() => {
+            setAttackEffects(prev => prev.filter(e => e.id !== id));
+        }, 1000);
+      };
 
     const resetBattle = () => {
         setPlayer({});
@@ -54,7 +65,10 @@ export function BattleProvider({ children }) {
             handleEnemyKill,
             turns,
             setTurns,
-            gameResult
+            gameResult,
+            setAttackEffects,
+            attackEffects,
+            addAttackEffect
         }}>
             {children}
         </BattleContext.Provider>

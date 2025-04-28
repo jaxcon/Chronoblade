@@ -41,7 +41,6 @@ export const ModalContent = styled.div`
     max-width: 400px;
     width: 90%;
     box-shadow: 0 0 24px rgba(255, 0, 0, 0.4);
-
     animation: ${fadeIn} 0.4s ease-out forwards;
 `;
 

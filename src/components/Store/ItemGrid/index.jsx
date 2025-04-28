@@ -1,5 +1,5 @@
 import { ItemsWrapper } from "./styles";
-import { items, getPurchasedCount, getItemCount } from './itemsData';
+import { items, getPurchasedCount, getItemCount } from '../../../utils/itemsData';
 import { useTranslation } from 'react-i18next';
 import ItemCard from "./ItemCard";
 

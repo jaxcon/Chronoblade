@@ -14,9 +14,9 @@ const ControlPanel = ({ selectedAction, setSelectedAction, championClass, xp }) 
                 {getString('attackAction')}
             </ActionButton>
 
-            <ActionButton  selected={selectedAction === "skill"} onClick={() => {
+            <ActionButton  selected={selectedAction.includes('skill')} onClick={() => {
                     setSelectedAction("pause");
-                    setSkillModalOpen(true);
+                    setTimeout( () => setSkillModalOpen(true), 500)
             }}>
                 <img src="assets/icons/skillIcon.png" alt="skill" />
                 {getString('skill')}

@@ -1,5 +1,5 @@
-import { getLvl, getStatsFromLvl, getImagesForChamp } from '../Battle/championDataHandle';
-import { creepsList } from '../Battle/unitList';
+import { getLvl, getStatsFromLvl, getImagesForChamp } from './championDataHandle';
+import { creepsList } from './unitList';
 
 export const initPlayer = (xp, championClass, setPlayer) => {
     const champLvl = getLvl(xp);
@@ -101,5 +101,5 @@ export const initTurns = (player, enemies, setTurns) => {
 }
 
 export const getAttackDamage = (minDamage, maxDamage) => {
-    return Math.floor(Math.random() * (maxDamage - minDamage + 1)) + minDamage;
+    return Math.floor(Math.random() * (maxDamage - minDamage + 1)) + Math.floor(minDamage);
 }

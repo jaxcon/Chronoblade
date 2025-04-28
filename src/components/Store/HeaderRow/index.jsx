@@ -9,7 +9,7 @@ import {
     TopRow,
     Divider
 } from "./styles";
-import { calculateStats } from '../ItemGrid/itemsData';
+import { calculateStats } from '../../../utils/itemsData';
 import { memo, useMemo, useCallback, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const HeaderRow = ({ gold, buyedItems }) => {
 
     const handleBack = useCallback(() => {
         setClicked(true);
-        setTimeout(() => navigate('/'), 300);
+        setTimeout(() => navigate('/'), 100);
     }, []);
 
     return (

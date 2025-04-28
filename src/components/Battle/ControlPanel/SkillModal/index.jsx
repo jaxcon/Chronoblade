@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { getSkills } from '../../championDataHandle';
+import { getSkills } from '../../../../utils/championDataHandle';
 import {
     ModalOverlay,
     ModalContent,

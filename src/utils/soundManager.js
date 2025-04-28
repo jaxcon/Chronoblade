@@ -1,7 +1,10 @@
 const soundMap = {
-    attack: "/sounds/attack.mp3",
-    hit: "assets//sounds/hit.mp3",
+    attack: "assets/sounds/hit.mp3",
+    gotHitting: "assets/sounds/hit.mp3",
+    getShield: "assets/sounds/hit.mp3",
+    kill: "assets//sounds/hit.mp3",
     heal: "/sounds/heal.mp3",
+    disappearance: "/assets/sounds/disappearance.mp3",
 };
 
 export function playSoundByName(name, volume = 0.5) {
