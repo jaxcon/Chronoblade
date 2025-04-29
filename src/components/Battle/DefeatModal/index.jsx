@@ -17,7 +17,6 @@ const STAT_ITEMS = [
     { icon: "🌟", key: "xpOverAll", valueKey: "xp" }
 ];
 
-
 function DefeatModal({ onRetry, onExit, gameResult }) {
     const { t: getString } = useTranslation();
 

@@ -6,8 +6,16 @@ export const EnemySection = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
-    column-gap: 6px;
     height: 36vh;
+`;
+
+export const EnemyWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 30vw;
+    height: 100%;
+    position: relative;
 `;
 
 export const EnemyImage = styled.img`
@@ -19,7 +27,7 @@ export const EnemyImage = styled.img`
 
 export const HPBarWrapper = styled.div`
     width: 100%;
-    height: 16px;
+    height: 14px;
     background-color: #222;
     border-radius: 6px;
     overflow: hidden;
@@ -56,12 +64,4 @@ export const HPText = styled.div`
     justify-content: center;
     pointer-events: none;
     text-shadow: 0 0 2px #000;
-`;
-export const EnemyWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 30vw;
-    height: 100%;
-    position: relative;
 `;

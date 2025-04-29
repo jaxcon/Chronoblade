@@ -20,13 +20,13 @@ export const PlayerWrapper = styled.div`
 export const PlayerImage = styled.img`
     width: auto;
     max-width: 80vw;
-    height: 41vh;
+    height: 40vh;
     object-fit: contain;
 `;
 
 export const HPBarWrapper = styled.div`
     width: 100%;
-    height: 16px;
+    height: 14px;
     background-color: #222;
     border-radius: 6px;
     overflow: hidden;

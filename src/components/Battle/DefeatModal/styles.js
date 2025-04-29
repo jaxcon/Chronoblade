@@ -67,7 +67,6 @@ export const ModalStats = styled.div`
     line-height: 1.5;
 `;
 
-
 export const StatItem = styled.div`
     display: flex;
     align-items: center;

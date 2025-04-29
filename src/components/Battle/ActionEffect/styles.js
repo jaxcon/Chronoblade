@@ -29,28 +29,40 @@ export const ActionContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 12px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(30, 30, 45, 0.6);
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7), inset 0 0 5px rgba(255, 255, 255, 0.05);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    animation: ${hitAnimation} 1s ease forwards;
 `;
 
 export const ActionContent = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    z-index: 101;
+    animation: ${hitAnimation} 1s ease forwards;
+`;
+
+export const DamageText = styled.div`
+    color: #ff4c4c;
+    font-weight: bold;
+    font-size: 28px;
+    text-shadow: 0 0 4px #000;
+    pointer-events: none;
+    position: relative;
+    animation: pulseDamage 0.5s ease-in-out infinite alternate;
+
+    @keyframes pulseDamage {
+        from { transform: scale(1); opacity: 1; }
+        to { transform: scale(1.2); opacity: 0.8; }
+    }
 `;
 
 export const KillAvatar = styled.img`
@@ -84,17 +96,9 @@ export const ActionIcon = styled.img`
     width: 64px;
 `;
 
-export const DamageText = styled.div`
-    margin-top: 10px;
-    color: #ff4c4c;
-    font-weight: bold;
-    font-size: 28px;
-    text-shadow: 0 0 4px #000;
-    pointer-events: none;
-`;
+
 
 export const ShieldText = styled.div`
-    margin-top: 10px;
     color:rgb(103, 73, 236);
     font-weight: bold;
     font-size: 28px;

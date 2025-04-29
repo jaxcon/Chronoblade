@@ -39,7 +39,7 @@ export const usePlay = () => {
                     shield: shieldValue,
                     type: 'shield'
                 });
-                playSoundByName('getShield', volume);
+                playSoundByName('shield', volume);
 
                 delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
                 break;
@@ -67,6 +67,14 @@ export const usePlay = () => {
     const initBattle = (xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect) => {
         const totalValue = getTotalValue(xp);
         const player = initPlayer(xp, championClass, setPlayer);
+        const enemies = initEnemies(setEnemies, totalValue);
+        const turns = initTurns(player, enemies, setTurns);
+
+        delayNextTurn(enemies, player, turns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, 500);
+    }
+
+    const continueBattle = (xp, player, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect) => {
+        const totalValue = getTotalValue(xp);
         const enemies = initEnemies(setEnemies, totalValue);
         const turns = initTurns(player, enemies, setTurns);
 
@@ -129,7 +137,6 @@ export const usePlay = () => {
                             unitId: enemies[randomTarget].id,
                             damage: attackDamage
                           });
-                        playSoundByName('attack', volume);
                     }
 
                     delayNextTurn(newEnemies, player, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
@@ -160,11 +167,9 @@ export const usePlay = () => {
                 damage: attackDamage
               });
 
-            playSoundByName('gotHitting', volume);
-
             delayNextTurn(enemies, newPlayer, newTurns, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
         }
     }
 
-    return initBattle;
+    return {initBattle, continueBattle};
 }

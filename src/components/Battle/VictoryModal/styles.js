@@ -93,6 +93,7 @@ export const ModalButton = styled.button`
     border-radius: 10px;
     cursor: pointer;
     margin: 0 8px;
+    transition: transform 0.3s ease;
     
     &:hover {
         background: #66BB6A;

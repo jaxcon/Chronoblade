@@ -19,7 +19,7 @@ const delaySequence = [1, 6, 10, 20, 30, 50, 60];
 
 function GameHub() {
     const navigate = useNavigate();
-    const { username, champion, volume } = usePlayer();
+    const { username, champion } = usePlayer();
 
     useEffect(() => {
         if (!champion) {
@@ -29,15 +29,14 @@ function GameHub() {
 
     const birds = useMemo(() =>
         Array.from({ length: delaySequence.length }).map((_, i) => ({
-            key: i,
             delay: delaySequence[i],
             size: `${20 + Math.random() * 15}px`,
             top: `${5 + Math.random() * 80}%`,
             left: `0%`,
             duration: `${10 + Math.random() * 15}s`
-        })), 
-    []);
-
+        })),
+        []);
+    { birds.map(props => <Bird key={props.key} {...props} />) }
     return (
         <>
             <BackgroundWrapper>
@@ -50,12 +49,7 @@ function GameHub() {
 
             <Smoke />
             <BirdsContainer>
-                {birds.map(({ key, delay, size, top, left, duration }) => (
-                    <Bird
-                        key={key}
-                        {...{ delay, size, top, left, duration }}
-                    />
-                ))}
+                {birds.map((props, i) => <Bird key={'bird' + i} {...props} />)}
             </BirdsContainer>
 
             <ButtonsWrapper>

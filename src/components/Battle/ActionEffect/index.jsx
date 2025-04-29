@@ -31,13 +31,17 @@ const ActionEffect = ({ damage, type, avatar, shield }) => {
                 {type === 'shield' && (
                     <>
                         <ActionIcon src="assets/icons/shield.png" alt="Shield" />
-                        <ShieldText>{shield}</ShieldText>
+                        <ShieldText>
+                            {shield}
+                        </ShieldText>
                     </>
                 )}
                 {!type && (
                     <>
                         <ActionIcon src="assets/icons/basicAttack.png" alt="Attack" />
-                        <DamageText>{damage}</DamageText>
+                        <DamageText>
+                            {damage}
+                        </DamageText>
                     </>
                 )}
             </ActionContent>

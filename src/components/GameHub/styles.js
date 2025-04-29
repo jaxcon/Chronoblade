@@ -12,8 +12,12 @@ const pulseRing = keyframes`
 `;
 
 const bounce = keyframes`
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+    0%, 100% { 
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -22,7 +26,6 @@ export const ButtonsWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100vh;
-    aspect-ratio: 620 / 1102;
     margin: auto;
     z-index: 1;
 `;
@@ -34,9 +37,8 @@ const BaseButton = styled.button`
     background: ${({ $bgColor }) => $bgColor || "transparent"};
     outline: none;
     padding: 0;
-    margin: 0;
     transform-origin: center;
-    border-radius: 12px;
+    border-radius: 14px;
     z-index: 3;
 
     &::before {
@@ -56,8 +58,8 @@ const BaseButton = styled.button`
     &::after {
         content: '${({ $icon }) => $icon || ""}';
         position: absolute;
-        bottom: 45%;
-        right: 5%;
+        bottom: 40%;
+        right: 20%;
         font-size: 1.4rem;
         opacity: 0.85;
         animation: ${bounce} 1.5s ease-in-out infinite;

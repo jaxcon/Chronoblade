@@ -1,9 +1,10 @@
 const soundMap = {
-    attack: "assets/sounds/hit.mp3",
-    gotHitting: "assets/sounds/hit.mp3",
     getShield: "assets/sounds/hit.mp3",
-    kill: "assets//sounds/hit.mp3",
+    shield: "assets/sounds/shield.wav",
+    kill: "assets/sounds/hit.mp3",
     heal: "/sounds/heal.mp3",
+    win: "assets/sounds/win.wav",
+    lose: "assets/sounds/lose.wav",
     disappearance: "/assets/sounds/disappearance.mp3",
 };
 

@@ -30,6 +30,7 @@ export function BattleProvider({ children }) {
         setTurns({queue: [], turnOrder: 0});
         setSelectedAction("attack");
         setGameResult({gold: 0, xp: 0, unitKills: 0})
+        setBattleNumber(1);
     };
 
     const handleEnemyKill = (value) => {
@@ -46,7 +47,7 @@ export function BattleProvider({ children }) {
 
         setGameResult(prev => ({
             ...prev,
-            gold: prev.gold + value/2,
+            gold: Math.ceil(prev.gold + value/2),
             xp: prev.xp + value,
             unitKills: prev.unitKills + 1
         }));    
@@ -68,7 +69,9 @@ export function BattleProvider({ children }) {
             gameResult,
             setAttackEffects,
             attackEffects,
-            addAttackEffect
+            addAttackEffect,
+            setBattleNumber,
+            battleNumber
         }}>
             {children}
         </BattleContext.Provider>

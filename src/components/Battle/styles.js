@@ -6,5 +6,4 @@ export const BattleWrapper = styled.div`
     width: 100%;
     height: 100vh;
     background: linear-gradient(to bottom, #e2e6ea, #c5ccd3);
-    
 `;
