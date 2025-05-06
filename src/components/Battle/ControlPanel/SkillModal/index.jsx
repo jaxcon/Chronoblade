@@ -13,7 +13,7 @@ import {
 } from './styles';
 import { useTranslation } from 'react-i18next';
 
-export const SkillModal = ({ open, onClose, setSelectedAction, championClass, xp }) => {
+export const SkillModal = ({ open, onClose, setSelectedAction, championClass, xp, cooldowns }) => {
     const { t: getString } = useTranslation();
 
     const handleSkillSelect = useCallback((skill) => {
@@ -26,6 +26,12 @@ export const SkillModal = ({ open, onClose, setSelectedAction, championClass, xp
         onClose();
     }, [setSelectedAction, onClose]);
 
+    const getCooldownRounds = (skill) => {
+        if (!cooldowns?.length) return null;
+        const cooldown = cooldowns.find(c => c.skill === skill);
+        return cooldown ? cooldown.rounds : null;
+    };
+
     if (!open) return null;
 
     const skills = getSkills(xp, championClass);
@@ -36,18 +42,26 @@ export const SkillModal = ({ open, onClose, setSelectedAction, championClass, xp
                     {getString('selectSkill')}
                 </ModalTitle>
                 <SkillsList>
-                    {skills.map((skill) => (
-                        <SkillItem key={skill}>
-                            <SkillButton onClick={() => handleSkillSelect(skill)}>
-                                <SkillName>
-                                    {skill}
-                                </SkillName>
-                                <SkillDescription>
-                                    {getString(skill + 'Desc')}
-                                </SkillDescription>
-                            </SkillButton>
-                        </SkillItem>
-                    ))}
+                    {skills.map((skill) => {
+                        const cooldownOfCurrent = getCooldownRounds(skill);
+                        const isCooldowned = cooldownOfCurrent > 0;
+
+                        return (
+                            <SkillItem key={skill}>
+                                <SkillButton disabled={isCooldowned} onClick={() => handleSkillSelect(skill)}>
+                                    <SkillName>
+                                        {getString(skill)}
+                                    </SkillName>
+                                    <SkillDescription>
+                                        {isCooldowned
+                                            ? getString('cooldowned1') + cooldownOfCurrent + getString('cooldowned2') 
+                                            : getString(skill + 'Desc')}
+                                    </SkillDescription>
+
+                                </SkillButton>
+                            </SkillItem>
+                        )
+                    })}
                 </SkillsList>
                 <CancelButton onClick={handleCancel}>
                     {getString('cancel')}

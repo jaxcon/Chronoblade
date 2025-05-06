@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-    margin: 4px 0 12px;
-    padding: 4px 14px 14px;
+    margin: 3px 0 12px;
+    padding: 2px 14px 14px;
     border-radius: 12px;
+    border-bottom-right-radius: 0px;
     background: linear-gradient(to bottom, #e2e6ea, #c5ccd3);
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
 `;
 
 export const TopRow = styled.div`
@@ -32,13 +33,13 @@ export const CurrencyIcon = styled.img`
 
 export const CurrencyAmount = styled.span`
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 650;
     color: #222;
 `;
 
 export const BackButton = styled.button`
     position: absolute;
-    top: 4px;
+    top: 3px;
     right: 8px;
     width: 36px;
     height: 36px;

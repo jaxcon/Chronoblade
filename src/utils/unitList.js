@@ -1,8 +1,7 @@
-//add id, currentHp
 export const creepsList = [
     {
-        name: 'Ibis',
-        image: 'assets/units/enemies/Ibis.png',
+        name: 'ibis',
+        image: 'assets/units/enemies/ibis.png',
         avatar: 'assets/units/enemies/avatars/ibis.png',
         value: 70,
         stats: {
@@ -91,61 +90,140 @@ export const creepsList = [
         currentHealth: 160
     },
 
-    // {
-    //     name: 'Dwarf Shooter',
-    //     image: 'assets/units/enemies/dwarfShooter.png',
-    //     avatar: 'assets/units/enemies/avatars/dwarfShooter.png',
-    //     value: 300,
-    //     stats: {
-    //         maxHealth: 160,
-    //         shield: 0,
-    //         speed: 5,
-    //         defense: 1
-    //     },
-    //     minAttack: 52,
-    //     maxAttack: 58
-    // },
-    // {
-    //     name: 'Bogle',
-    //     image: 'assets/units/enemies/bogle.png',
-    //     avatar: 'assets/units/enemies/avatars/bogle.png',
-    //     value: 300,
-    //     stats: {
-    //         maxHealth: 160,
-    //         shield: 0,
-    //         speed: 5,
-    //         defense: 1
-    //     },
-    //     minAttack: 52,
-    //     maxAttack: 58
-    // },
-    // {
-    //     name: 'Zhabdard',
-    //     image: 'assets/units/enemies/zhabdar.png',
-    //     avatar: 'assets/units/enemies/avatars/zhabdar.png',
-    //     value: 300,
-    //     stats: {
-    //         maxHealth: 160,
-    //         shield: 0,
-    //         speed: 5,
-    //         defense: 1
-    //     },
-    //     minAttack: 52,
-    //     maxAttack: 58
-    // },
-    // {
-    //     name: 'Kasa Obake',
-    //     image: 'assets/units/enemies/kasaObake.png',
-    //     avatar: 'assets/units/enemies/avatars/kasaObake.png',
-    //     value: 303330,
-    //     stats: {
-    //         maxHealth: 160,
-    //         shield: 0,
-    //         speed: 5,
-    //         defense: 2
-    //     },
-    //     minAttack: 52,
-    //     maxAttack: 58
-    // }
+    {
+        name: 'Dwarf Shooter',
+        image: 'assets/units/enemies/dwarfShooter.png',
+        avatar: 'assets/units/enemies/avatars/dwarfShooter.png',
+        value: 330,
+        stats: {
+            maxHealth: 160,
+            shield: 40,
+            speed: 6,
+            defense: 3
+        },
+        minAttack: 54,
+        maxAttack: 60,
+        currentHealth: 160
+    },
+    {
+        name: 'Bogle',
+        image: 'assets/units/enemies/bogle.png',
+        avatar: 'assets/units/enemies/avatars/bogle.png',
+        value: 350,
+        stats: {
+            maxHealth: 165,
+            shield: 0,
+            speed: 8,
+            defense: 3
+        },
+        minAttack: 50,
+        maxAttack: 55,
+        currentHealth: 165
+    },
+    {
+        name: 'Zhabdard',
+        image: 'assets/units/enemies/zhabdar.png',
+        avatar: 'assets/units/enemies/avatars/zhabdar.png',
+        value: 380,
+        stats: {
+            maxHealth: 150,
+            shield: 0,
+            speed: 10,
+            defense: 5
+        },
+        minAttack: 60,
+        maxAttack: 65,
+        currentHealth: 150
+    },
+    {
+        name: 'Kasa Obake',
+        image: 'assets/units/enemies/kasaObake.png',
+        avatar: 'assets/units/enemies/avatars/kasaObake.png',
+        value: 400,
+        stats: {
+            maxHealth: 170,
+            shield: 0,
+            speed: 7,
+            defense: 5
+        },
+        minAttack: 50,
+        maxAttack: 65,
+        currentHealth: 170
+    },
+    {
+        name: 'Former Knight',
+        image: 'assets/units/enemies/formerKnight.png',
+        avatar: 'assets/units/enemies/avatars/formerKnight.png',
+        value: 450,
+        stats: {
+            maxHealth: 200,
+            shield: 0,
+            speed: 8,
+            defense: 7
+        },
+        minAttack: 44,
+        maxAttack: 55,
+        currentHealth: 200
+    },
+    {
+        name: 'Sand Snake',
+        image: 'assets/units/enemies/sandSnake.png',
+        avatar: 'assets/units/enemies/avatars/sandSnake.png',
+        value: 500,
+        stats: {
+            maxHealth: 300,
+            shield: 0,
+            speed: 8,
+            defense: 7
+        },
+        minAttack: 40,
+        maxAttack: 55,
+        currentHealth: 300
+    },
+    {
+        name: 'Sand Snake',
+        image: 'assets/units/enemies/sandSnake.png',
+        avatar: 'assets/units/enemies/avatars/sandSnake.png',
+        value: 500,
+        stats: {
+            maxHealth: 300,
+            shield: 0,
+            speed: 8,
+            defense: 7
+        },
+        minAttack: 40,
+        maxAttack: 55,
+        currentHealth: 300
+    }, 
+    {
+        name: 'Zhabdar2',
+        image: 'assets/units/enemies/zhabdar2.png',
+        avatar: 'assets/units/enemies/avatars/zhabdar2.png',
+        value: 600,
+        stats: {
+            maxHealth: 300,
+            shield: 0,
+            speed: 8,
+            defense: 10
+        },
+        minAttack: 50,
+        maxAttack: 60,
+        currentHealth: 300
+    },
+    {
+        name: 'Gargoyle',
+        image: 'assets/units/enemies/gargoyle.png',
+        avatar: 'assets/units/enemies/avatars/gargoyle.png',
+        value: 700,
+        stats: {
+            maxHealth: 320,
+            shield: 0,
+            speed: 8,
+            defense: 10
+        },
+        minAttack: 58,
+        maxAttack: 60,
+        currentHealth: 320
+    },
     
 ]

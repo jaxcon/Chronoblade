@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { usePlayer } from './context/PlayerContext';
 import styled from 'styled-components';
 
@@ -9,25 +8,7 @@ const Wrapper = styled.div`
 `;
 
 function AppWrapper({ children }) {
-    const navigate = useNavigate();
-    const location = useLocation();
     const { volume } = usePlayer();
-
-    useEffect(() => {
-        const handlePopState = (event) => {
-            event.preventDefault();
-            navigate(location.pathname, { replace: true });
-        };
-
-        window.history.pushState(null, '', window.location.pathname);
-
-        window.addEventListener('popstate', handlePopState);
-
-        return () => {
-            window.removeEventListener('popstate', handlePopState);
-        };
-    }, [location, navigate]);
-
     const audioRef = useRef(null);
     const [isAudioStarted, setIsAudioStarted] = useState(false);
 
@@ -35,14 +16,13 @@ function AppWrapper({ children }) {
         const handleUserInteraction = () => {
             if (!isAudioStarted && audioRef.current) {
                 audioRef.current.volume = volume;
-                audioRef.current.play();
+                audioRef.current.play().catch(console.error);
                 setIsAudioStarted(true);
                 document.removeEventListener('click', handleUserInteraction);
             }
         };
 
         document.addEventListener('click', handleUserInteraction);
-
         return () => {
             document.removeEventListener('click', handleUserInteraction);
         };
@@ -58,7 +38,8 @@ function AppWrapper({ children }) {
         <Wrapper>
             <audio ref={audioRef} src="assets/sounds/main.mp3" loop preload="auto" />
             {children}
-        </Wrapper>);
+        </Wrapper>
+    );
 }
 
 export default AppWrapper;

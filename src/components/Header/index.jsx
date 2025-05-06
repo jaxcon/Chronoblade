@@ -7,11 +7,15 @@ import ChampionIcon from './ChampionIcon';
 
 function Header() {
     const [showSettings, setShowSettings] = useState(false);
-    const { username, champion, xp } = usePlayer();
+    const { username, getSelectedChamp } = usePlayer();
+
+    const champ = getSelectedChamp();
+
+    if (!champ) return;
 
     return (
         <HeaderWrapper>
-            <ChampionIcon username={username} champion={champion} exp={xp} />
+            <ChampionIcon username={username} champion={champ?.id} exp={champ?.xp} />
             <SettingsButton onClick={() => setShowSettings(true)}>
                 <FiSettings size={24} color="#fff" />
             </SettingsButton>

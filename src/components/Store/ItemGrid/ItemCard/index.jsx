@@ -27,20 +27,19 @@ const ItemCard = ({ item, getString, purchasedCount, remaining }) => {
                     className={clicked 
                         ? 'clicked'
                         : ''}
-                    disabled={item.stock - purchasedCount === 0 || item.price > gold}
-                    onClick={() => {
+                    disabled={item.stock - purchasedCount === 0 || item.price > gold || clicked}
+                    onClick={async () => {
                         setClicked(true);
-                        buyNewItem(item.id, item.price);
+                        await buyNewItem(item.id, item.price);
                         setKey(prev => prev + 1);
-                        setTimeout(() => setClicked(false), 1000);
-
+                        setTimeout(() => setClicked(false), 500);
                     }}
                 >
                     {getString('buy')} {item.price}
                 </BuyButton>
             </ItemCardWrapper>
         );
-    }, [purchasedCount])
+    }, [purchasedCount, clicked, gold])
 
     return memoizedItemCard;
 };

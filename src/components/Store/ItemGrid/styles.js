@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const ItemsWrapper = styled.div`
-    height: calc(100vh - 100px - 1rem);
+    height: calc(100vh - 90px - 1rem);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
-    padding: 0.5rem;
+    padding: 0.35rem;
     box-sizing: border-box;
 `;
 
@@ -43,6 +43,11 @@ export const ItemStats = styled.div`
     font-size: 0.85rem;
     color: #666;
     margin-bottom: 0.75rem;
+
+    @media (max-height: 600px) {
+        font-size: 0.7rem;
+        line-height: 1.1;
+    }
 `;
 
 

@@ -85,6 +85,7 @@ export const ButtonGroup = styled.div`
 `;
 
 export const ModalButton = styled.button`
+    flex: 1;
     background: #4CAF50;
     color: white;
     font-weight: bold;

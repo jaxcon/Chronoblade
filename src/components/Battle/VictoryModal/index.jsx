@@ -33,7 +33,9 @@ function VictoryModal({ onContinue, onExit, gameResult }) {
                 <ModalTitle>
                     {'victory'}
                 </ModalTitle>
-                <VictoryIcon>🏆</VictoryIcon>
+                <VictoryIcon>
+                    🏆
+                </VictoryIcon>
                 <ModalStats>
                     {STAT_ITEMS.map(renderStatItem)}
                 </ModalStats>

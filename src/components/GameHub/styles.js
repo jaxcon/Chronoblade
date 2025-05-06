@@ -60,7 +60,7 @@ const BaseButton = styled.button`
         position: absolute;
         bottom: 40%;
         right: 20%;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         opacity: 0.85;
         animation: ${bounce} 1.5s ease-in-out infinite;
         transition: opacity 0.3s ease;
@@ -72,7 +72,7 @@ export const ShopButton = styled(BaseButton).attrs({
     $ringColor: "rgba(255, 100, 100, 0.125)",
     $icon: "🛒",
 })`
-    top: 65%;
+    top: 68%;
     left: 80%;
     width: 20%;
     height: 20%;
@@ -94,7 +94,7 @@ export const TavernButton = styled(BaseButton).attrs({
     $ringColor: "rgba(80, 80, 255, 0.125)",
     $icon: "🍻",
 })`
-    top: 62%;
+    top: 65%;
     left: 0%;
     width: 24%;
     height: 23%;

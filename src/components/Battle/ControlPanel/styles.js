@@ -31,8 +31,14 @@ export const ActionButton = styled.button`
     }
 
     img {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         margin-bottom: 4px;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.6;
+        cursor: not-allowed;
     }
 `;

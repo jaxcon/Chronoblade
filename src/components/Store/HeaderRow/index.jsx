@@ -9,7 +9,7 @@ import {
     TopRow,
     Divider
 } from "./styles";
-import { calculateStats } from '../../../utils/itemsData';
+import { calculateStatsForHeader } from '../../../utils/itemsData';
 import { memo, useMemo, useCallback, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const HeaderRow = ({ gold, buyedItems }) => {
     const [clicked, setClicked] = useState(false);
 
-    const stats = useMemo(() => calculateStats(buyedItems), [buyedItems]);
+    const stats = useMemo(() => calculateStatsForHeader(buyedItems), [buyedItems]);
     const navigate = useNavigate();
 
     const handleBack = useCallback(() => {

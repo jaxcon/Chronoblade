@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import {
     Card,
     Image,
@@ -7,52 +6,30 @@ import {
     SwipeArea,
     ChooseButton
 } from './styles';
-import { usePlayer } from '../../../context/PlayerContext';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import StatsBlock from '../StatsBlock';
+import { useSwipe } from '../../../hooks/useSwipe';
+import { getLvl, getStatsFromLvl } from '../../../utils/championDataHandle';
 
-
-function CharacterCard({ character, onSwipe }) {
-    const { updateChampion } = usePlayer();
-    const navigate = useNavigate();
+function CharacterCard({ image, champId, champXp, onSwipe, onConfirm }) {
     const { t: getString } = useTranslation();
-
-    const touchStartX = useRef(null);
-
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e) => {
-        if (touchStartX.current === null) return;
-        const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-        if (deltaX > 50) {
-            onSwipe('right');
-        } else if (deltaX < -50) {
-            onSwipe('left');
-        }
-        touchStartX.current = null;
-    };
+    const { swipeHandlers } = useSwipe(onSwipe);
 
     return (
         <SwipeArea
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
+            onTouchStart={swipeHandlers.onTouchStart}
+            onTouchEnd={swipeHandlers.onTouchEnd}
         >
             <Card>
                 <Name>
-                    {getString(character.id)}
+                    {getString(champId)}
                 </Name>
-                <Image src={character.image} alt={getString(character.id)} />
-                <StatsBlock getString={getString} stats={character.stats} />
+                <Image src={image} alt={getString(champId)} />
+                <StatsBlock stats={getStatsFromLvl(getLvl(champXp), champId)} />
                 <Description>
-                    {getString(character.id + 'Description')}
+                    {getString(champId + 'Description')}
                 </Description>
-                <ChooseButton onClick={() => {
-                    updateChampion(character.id);
-                    navigate('/');
-                }}>
+                <ChooseButton onClick={onConfirm}>
                     {getString('select')}
                 </ChooseButton>
             </Card>

@@ -96,12 +96,26 @@ export const ActionIcon = styled.img`
     width: 64px;
 `;
 
-
-
 export const ShieldText = styled.div`
     color:rgb(103, 73, 236);
     font-weight: bold;
     font-size: 28px;
     text-shadow: 0 0 4px #000;
     pointer-events: none;
+`;
+
+const healAnimation = keyframes`
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+`;
+
+export const HealEffect = styled.div`
+
+    font-size: 24px;
+    color: #4dff88;
+    text-shadow: 0 0 8px rgba(0, 255, 100, 0.7);
+    animation: ${healAnimation} 0.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 90; // Ниже основных эффектов
 `;

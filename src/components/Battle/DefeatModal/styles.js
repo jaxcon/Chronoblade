@@ -88,6 +88,7 @@ export const ButtonGroup = styled.div`
 `;
 
 export const ModalButton = styled.button`
+    flex: 1;
     background: #ffc107;
     color: black;
     font-weight: bold;
@@ -101,5 +102,4 @@ export const ModalButton = styled.button`
         background: #ffda44;
         transform: scale(1.05);
     }
-  }
 `;

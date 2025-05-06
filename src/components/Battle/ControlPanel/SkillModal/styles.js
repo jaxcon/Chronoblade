@@ -60,6 +60,12 @@ export const SkillButton = styled.button`
     &:hover {
         background: #4a5568;
     }
+    &:disabled {
+        background: rgba(0, 0, 0, 0.5);
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 `;
 
 export const SkillName = styled.div`

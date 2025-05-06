@@ -14,50 +14,50 @@ const imageSources = {
 
 }
 
-const xpThreshold = [0, 50, 120, 210, 330, 480, 660, 870, 1110, 1380, 1680, 2010, 2370, 2760, 3180];
+const xpThreshold = [0, 100, 240, 420, 660, 960, 1240, 1700, 2200, 2700, 3350, 3880, 4600, 5100, 5600, 6000, 6700, 7800, 8500, 9200, 10420, 12000];
 
 const getDraygarStats = (level) => {
-    const health = 1100 + level * 6.7;
+    const health = 130 + level * 6.7;
     return {
         minAttack: 25 + level * 2,
         maxAttack: 40 + level * 2,
-        defense: 8 + level * 2.5,
+        defense: Math.floor(8 + level * 2.5),
         speed: Math.ceil(4 + level * 0.3),
-        shield: Math.floor(health * 0.3),
-        criticalChance: 1,
+        shield: Math.floor(health * 0.2),
+        criticalChance: 3 + Math.ceil(level / 2),
         health: Math.floor(health),
-        Lifesteal: 5,
-        skills: [...(level >= 5 ? ['shieldWall' ] : []), ...(level >= 10 ? ['rageStrike'] : []), ...(level >= 15 ? ['berserk'] : [])]
+        lifeSteal: 5,
+        skills: ['shieldWall', ...(level >= 10 ? ['rageStrike'] : []), ...(level >= 15 ? ['berserk'] : [])]
     };
 };
 
 const getDanitsaStats = (level) => {
-    const health = 70 + level * 4;
+
     return {
-        minAttack: 4 + level * 3,
-        maxAttack: 14 + level * 3,
-        defense: 4 + level * 1,
-        speed: 6 + level * 1.3,
-        Lifesteal: 0,
+        minAttack: 34 + level * 3,
+        maxAttack: 42 + level * 3,
+        defense: 4 + level,
+        speed: Math.floor(6 + level * 0.4),
+        lifeSteal: 10,
         shield: 0,
-        criticalChance: 1,
-        health: Math.floor(health),
-        skills: [...(level >= 5 ? ['shadowStrike'] : []), ...(level >= 10 ? ['blink'] : []), ...(level >= 15 ? ['voidDance'] : [])]
+        criticalChance: 7 + level,
+        health: Math.floor(110 + level * 4),
+        skills: ['shadowStrike', ...(level >= 10 ? ['bloodHarvest'] : []), ...(level >= 15 ? ['voidDance'] : [])]
     };
 };
 
 const getJormungadStats = (level) => {
-    const health = 80 + level * 4.7;
+    const health = 140 + level * 5.8;
     return {
-        minAttack: 1 + level * 3.8,
-        maxAttack: 10 + level * 3.8,
-        defense: 5 + level * 0.6,
-        speed: 7 + level * 0.7,
-        Lifesteal: 10,
+        minAttack: Math.floor(31 + level * 2.8),
+        maxAttack: Math.floor(34 + level * 2.8),
+        defense: Math.floor(5 + level * 1.8),
+        speed: Math.floor(5 + level * 0.32),
+        lifeSteal: 3,
         shield: Math.floor(health * 0.3),
-        criticalChance: 1 + level * 1.1,
+        criticalChance: 1 + Math.ceil(level / 4),
         health: Math.floor(health),
-        skills: [...(level >= 5 ? ['piercingHowl'] : []), ...(level >= 10 ? ['venomBlade'] : []), ...(level >= 15 ? ['earthShatter'] : [])]
+        skills: ['piercingHowl', ...(level >= 10 ? ['venomBlade'] : []), ...(level >= 15 ? ['earthShatter'] : [])]
     };
 };
 
@@ -70,10 +70,10 @@ export const getLvl = (exp) => {
 }
 
 export const getStatsFromLvl = (lvl, champClass) => {
-    return champClass === 'draygar' 
+    return champClass === 'draygar'
         ? getDraygarStats(lvl)
-        : champClass === 'danitsa' 
-            ? getDanitsaStats(lvl) 
+        : champClass === 'danitsa'
+            ? getDanitsaStats(lvl)
             : getJormungadStats(lvl);
 }
 

@@ -9,49 +9,42 @@ export function BattleProvider({ children }) {
     const [enemies, setEnemies] = useState([]);
     const [selectedAction, setSelectedAction] = useState("attack");
     const [gameResult, setGameResult] = useState({});
-    const [turns, setTurns] = useState({queue: [], turnOrder: 0, cooldowns: [{skill: 'name', rounds: 1},{skill: 'name', rounds: 1}]});
-    const [battleNumber, setBattleNumber] = useState([]);///////////////////////////////////////////////////////////////
-    const { setGold } = usePlayer();
+    const [turns, setTurns] = useState({ queue: [], turnOrder: 0, cooldowns: [{ skill: 'name', rounds: 1 }, { skill: 'name', rounds: 1 }] });
+    const [battleNumber, setBattleNumber] = useState(1);
+    const { updateGold, updateChampions } = usePlayer();
     const [attackEffects, setAttackEffects] = useState([]);
+    const [usableItems, setUsableItems] = useState([]);
 
     const addAttackEffect = (effect) => {
-        const id = Date.now(); // Уникальный ID
+        const id = crypto.randomUUID();
         setAttackEffects(prev => [...prev, { ...effect, id }]);
-        
 
         setTimeout(() => {
             setAttackEffects(prev => prev.filter(e => e.id !== id));
         }, 1000);
-      };
+    };
 
     const resetBattle = () => {
         setPlayer({});
         setEnemies([]);
-        setTurns({queue: [], turnOrder: 0});
+        setTurns({ queue: [], turnOrder: 0 });
         setSelectedAction("attack");
-        setGameResult({gold: 0, xp: 0, unitKills: 0})
+        setGameResult({ gold: 0, xp: 0, unitKills: 0 })
         setBattleNumber(1);
     };
 
-    const handleEnemyKill = (value) => {
-        // const newXp = player.xp + value;
-
-        // if (calculateLvl(newXp) > calculateLvl(player.xp)) {
-        //     const newStats = getStatsFromLvl(calculateLvl(newXp), player.champClass)
-        //     setPlayer({ ...player, xp: newXp, stats: newStats });
-        // } else {
-        //     setPlayer({ ...player, xp: newXp })
-        // }
-
-        // setGold(prevGold => prevGold + lootGold);
+    const handleEnemyKill = async (value) => {
 
         setGameResult(prev => ({
             ...prev,
-            gold: Math.ceil(prev.gold + value/2),
+            gold: Math.ceil(prev.gold + value / 2),
             xp: prev.xp + value,
             unitKills: prev.unitKills + 1
-        }));    
+        }));
 
+        await updateChampions(value);
+
+        await updateGold(Math.floor(value / 2));
     }
 
     return (
@@ -71,7 +64,9 @@ export function BattleProvider({ children }) {
             attackEffects,
             addAttackEffect,
             setBattleNumber,
-            battleNumber
+            battleNumber,
+            usableItems,
+            setUsableItems
         }}>
             {children}
         </BattleContext.Provider>

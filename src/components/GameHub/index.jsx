@@ -19,13 +19,14 @@ const delaySequence = [1, 6, 10, 20, 30, 50, 60];
 
 function GameHub() {
     const navigate = useNavigate();
-    const { username, champion } = usePlayer();
+    const { username, selectedChampion, getSelectedChamp, isLoading} = usePlayer();
 
     useEffect(() => {
-        if (!champion) {
+        if (!getSelectedChamp() && !isLoading) {
+            console.log(getSelectedChamp())
             navigate('champs');
         }
-    }, []);
+    }, [selectedChampion]);
 
     const birds = useMemo(() =>
         Array.from({ length: delaySequence.length }).map((_, i) => ({
@@ -34,9 +35,12 @@ function GameHub() {
             top: `${5 + Math.random() * 80}%`,
             left: `0%`,
             duration: `${10 + Math.random() * 15}s`
-        })),
-        []);
-    { birds.map(props => <Bird key={props.key} {...props} />) }
+        })), []);
+
+    birds.map(props => <Bird key={props.key} {...props} />)
+
+    if (isLoading) return null;
+
     return (
         <>
             <BackgroundWrapper>
@@ -59,7 +63,7 @@ function GameHub() {
             </ButtonsWrapper>
 
             {!username
-                ? <WelcomeModal />
+                ? <WelcomeModal navigate={navigate} />
                 : <Header />}
         </>
 

@@ -33,8 +33,9 @@ const EnemiesRow = ({ enemies }) => {
                             .map((effect) => (
                                 <ActionEffect
                                     key={effect.id}
-                                    damage={effect.damage}
+                                    value={effect.value}
                                     type={effect.type}
+                                    isCritical={effect.isCritical}
                                 />
                             ))}
                     </EnemyWrapper>

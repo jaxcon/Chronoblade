@@ -8,7 +8,7 @@ const shine = keyframes`
 export const ItemCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 0.55rem;
     background: #e6edf3;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
@@ -20,7 +20,7 @@ export const ItemCardWrapper = styled.div`
 export const ItemImage = styled.img`
     width: 100%;
     border-radius: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
     object-fit: contain;
     height: 40%;
     @media (min-height: 768px) {
@@ -30,8 +30,8 @@ export const ItemImage = styled.img`
 
 export const ItemName = styled.div`
     font-weight: 600;
-    font-size: 0.925rem;
-    margin-bottom: 0.2rem;
+    font-size: 0.825rem;
+    margin-bottom: 0.3rem;
 `;
 
 export const ItemStats = styled.div`
@@ -41,20 +41,20 @@ export const ItemStats = styled.div`
 `;
 
 export const BuyButton = styled.button`
-  background: linear-gradient(145deg, #4caf50, #388e3c);
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 0.9rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  z-index: 1;
-  min-width: 80px;
+    background: linear-gradient(145deg, #4caf50, #388e3c);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1;
+    min-width: 80px;
 
     &:active:enabled {
         transform: translateY(1px) scale(0.98);
@@ -87,7 +87,7 @@ export const BuyButton = styled.button`
     }
 
     &.clicked::before {
-        animation: ${shine} 1s ease-in-out forwards;
+        animation: ${shine} 0.5s ease-in-out forwards;
         opacity: 1;
     }
 `;

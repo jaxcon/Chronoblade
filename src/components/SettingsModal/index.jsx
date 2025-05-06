@@ -12,7 +12,7 @@ import {
 import { usePlayer } from '../../context/PlayerContext';
 
 function SettingsModal({ onClose }) {
-    const { volume, updateVolume } = usePlayer();
+    const { volume, updateVolume, updateLang} = usePlayer();
     const { t: getString } = useTranslation();
 
     return (
@@ -28,13 +28,13 @@ function SettingsModal({ onClose }) {
                 <h4>{getString('language')}</h4>
                 <FlagsWrapper>
                     <FlagButton
-                        onClick={() => i18n.changeLanguage('ru')}
+                        onClick={async () => updateLang('ru')}
                         selected={i18n.language === "ru"}
                     >
                         RU
                     </FlagButton>
                     <FlagButton
-                        onClick={() => i18n.changeLanguage('en')}
+                        onClick={async () => updateLang('en')}
                         selected={i18n.language === "en"}
                     >
                         EN
@@ -47,7 +47,7 @@ function SettingsModal({ onClose }) {
                     min="0"
                     max="100"
                     value={volume * 100}
-                    onChange={e => updateVolume(Number(e.target.value / 100))}
+                    onChange={async e  => await updateVolume(Number(e.target.value / 100))}
                 />
             </Modal>
         </Overlay>

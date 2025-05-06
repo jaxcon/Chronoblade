@@ -10,18 +10,19 @@ import ControlPanel from './ControlPanel';
 import TurnHistory from './TurnHistory';
 import DefeatModal from './DefeatModal';
 import BattleHeader from './BattleHeader';
+import VictoryModal from './VictoryModal';
 
 import { usePlay } from '../../hooks/usePlay';
+import { useBattleOver } from '../../hooks/useBattleOver';
+
 import { useNavigate } from 'react-router-dom';
-import VictoryModal from './VictoryModal';
-import { playSoundByName } from '../../utils/soundManager';
 
 const Battle = () => {
     const [isGameOver, setIsGameOver] = useState(false);
     const [isBattleWin, setIsBattleWin] = useState(false);
 
     const navigate = useNavigate();
-    const { champion: championClass, xp } = usePlayer();
+    const { getSelectedChamp, items } = usePlayer();
     const {
         resetBattle,
         setPlayer,
@@ -36,48 +37,36 @@ const Battle = () => {
         gameResult,
         addAttackEffect,
         setBattleNumber,
-        battleNumber
+        battleNumber,
+        usableItems,
+        setUsableItems
     } = useBattle();
     const { initBattle, continueBattle } = usePlay();
 
+    const { id: champId, xp } = getSelectedChamp();
+
+    useBattleOver(player, enemies, setIsGameOver, setIsBattleWin);
+
     const handleExit = useCallback(() => navigate("/"), []);
 
-    const playAgain = () => {
+    const onStart = () => {
+        resetBattle();
+        setIsGameOver(false);
+        initBattle(xp, champId, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, items, setUsableItems, battleNumber);
+    }
+
+    const playNext = () => {
         setBattleNumber(prev => prev + 1);
-        continueBattle(xp, player, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
+        continueBattle(xp, player, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect, setUsableItems, battleNumber, items);
         setIsBattleWin(false);
     }
 
     useEffect(() => {
-        resetBattle();
-        initBattle(xp, championClass, setPlayer, setEnemies, setTurns, handleEnemyKill, setSelectedAction, addAttackEffect);
-
+        onStart();
         return () => {
             resetBattle();
         }
     }, [])
-
-    useEffect(() => {
-
-        if (player?.currentHealth < 1 && player) {
-            setTimeout(() => {
-                playSoundByName('lose');
-                setIsGameOver(true);
-            }, 500);
-        }
-
-    }, [player?.currentHealth])
-
-    useEffect(() => {
-        if (enemies?.length === 0 && player?.currentHealth > 0) {
-            setTimeout(() => {
-                playSoundByName('win');
-                setIsBattleWin(true);
-            }, 1000);
-        }
-
-    }, [enemies])
-
 
     if (!turns?.queue?.length) return;
 
@@ -86,23 +75,23 @@ const Battle = () => {
             <BattleHeader battleNumber={battleNumber} />
             <EnemyRow enemies={enemies} />
             <PlayerRow player={player} />
-            <ControlPanel {...{ selectedAction, setSelectedAction, championClass, xp }} />
+            <ControlPanel cooldowns={turns?.cooldowns} {...{ selectedAction, setSelectedAction, champId, xp, usableItems }} />
             <TurnHistory turns={turns} />
 
             {isGameOver && (
                 <DefeatModal
                     onExit={handleExit}
                     gameResult={gameResult}
+                    onRetry={onStart}
                 />
             )}
             {isBattleWin && (
                 <VictoryModal
                     onExit={handleExit}
-                    onContinue={playAgain}
+                    onContinue={playNext}
                     gameResult={gameResult}
                 />
             )}
-
         </BattleWrapper>
     );
 };

@@ -7,7 +7,7 @@ export const TopInfo = styled.div`
     top: 8px;
     left: 8px;
     right: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     color: #555;
 `;

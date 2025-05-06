@@ -6,10 +6,11 @@ import {
     ActionContent,
     ShieldText,
     KillAvatar,
-    KillOverlay
+    KillOverlay,
+    HealEffect
 } from './styles';
 
-const ActionEffect = ({ damage, type, avatar, shield }) => {
+const ActionEffect = ({ value, type, avatar, isCritical = false }) => {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
@@ -22,6 +23,39 @@ const ActionEffect = ({ damage, type, avatar, shield }) => {
     return (
         <ActionContainer>
             <ActionContent>
+
+                {type === 'titan' && (
+                    <>
+                        <ActionIcon src="assets/icons/berserk.png" alt="Berserk" />
+                    </>
+                )}
+                {type === 'adrenaline' && (
+                    <>
+                        <ActionIcon src="assets/icons/berserk.png" alt="Berserk" />
+                    </>
+                )}
+
+
+                {type === 'stunned' && (
+                    <>
+                        <ActionIcon src="assets/icons/shocked.png" alt="Stunned" />
+                    </>
+                )}
+
+
+                {type === 'harvest' && (
+                    <>
+                        <ActionIcon src="assets/icons/bleed.png" alt="Harvest" />
+                    </>
+                )}
+                {type === '' && (
+                    <>
+                        <ActionIcon src="assets/icons/vulnerability.png" alt="Vulnerability" />
+                    </>
+                )}
+
+
+
                 {type === 'kill' && (
                     <>
                         <KillAvatar src={avatar} alt="Killed enemy" />
@@ -32,15 +66,25 @@ const ActionEffect = ({ damage, type, avatar, shield }) => {
                     <>
                         <ActionIcon src="assets/icons/shield.png" alt="Shield" />
                         <ShieldText>
-                            {shield}
+                            {value}
                         </ShieldText>
+                    </>
+                )}
+                {type === 'berserk' && (
+                    <>
+                        <ActionIcon src="assets/icons/berserk.png" alt="Berserk" />
+                    </>
+                )}
+                {type === 'heal' && (
+                    <>
+                        <HealEffect>❤️ {value}</HealEffect>
                     </>
                 )}
                 {!type && (
                     <>
-                        <ActionIcon src="assets/icons/basicAttack.png" alt="Attack" />
+                        <ActionIcon src={"assets/icons/" + (isCritical ? "criticalAttack.png" : "basicAttack.png")} alt="Attack" />
                         <DamageText>
-                            {damage}
+                            {value}
                         </DamageText>
                     </>
                 )}

@@ -59,11 +59,11 @@ export const CloseButton = styled.button`
     right: 12px;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 32px;
     color: #ccc;
     cursor: pointer;
 
     &:hover {
-    color: white;
+        color: white;
     }
 `;

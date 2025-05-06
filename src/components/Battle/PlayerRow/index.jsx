@@ -35,10 +35,10 @@ const PlayerRow = ( { player }) => {
                     .map((effect) => (
                             <ActionEffect
                                 key={effect.id}
-                                damage={effect.damage}
+                                value={effect.value}
                                 type={effect.type}
                                 avatar={effect.killedAvatar}
-                                shield={effect.shield}
+                                isCritical={effect.isCritical}
                             />
                     ))}
             </PlayerWrapper>

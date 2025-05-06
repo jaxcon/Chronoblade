@@ -18,11 +18,7 @@ export const Card = styled.div`
 `;
 
 export const Name = styled.h2`
-    padding-bottom: 2px;
     font-size: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 export const Image = styled.img`

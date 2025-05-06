@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import {
     ModalBackground,
     ModalContent,
@@ -11,13 +10,12 @@ import {
 import { usePlayer } from '../../context/PlayerContext';
 import { useTranslation } from 'react-i18next';
 
-function WelcomeModal() {
+function WelcomeModal({ navigate }) {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
 
     const { updateUsername } = usePlayer();
     const { t: getString } = useTranslation();
-    const navigate = useNavigate();
 
     const validateName = (value) => {
         if (value.trim().length < 3) return "Минимум 3 символа";
@@ -31,14 +29,14 @@ function WelcomeModal() {
         setError(validateName(value));
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         const trimmed = name.trim();
         const validationError = validateName(trimmed);
         if (validationError) {
             setError(validationError);
             return;
         }
-        updateUsername(trimmed);
+        await updateUsername(trimmed);
         navigate('champs')
     };
 
